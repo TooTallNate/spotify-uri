@@ -4,7 +4,7 @@
   "description": "Parse the various Spotify URI formats into Objects",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --reporter spec"
+    "test": "mocha --reporter spec test/test.js"
   },
   "repository": {
     "type": "git",
