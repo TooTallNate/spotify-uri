@@ -1,6 +1,6 @@
 {
   "name": "spotify-uri",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Parse the various Spotify URI formats into Objects",
   "main": "index.js",
   "scripts": {
