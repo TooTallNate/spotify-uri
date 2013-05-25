@@ -1,0 +1,30 @@
+{
+  "name": "spotify-uri",
+  "version": "0.0.0",
+  "description": "Parse the various Spotify URI formats into Objects",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/TooTallNate/spotify-uri.git"
+  },
+  "keywords": [
+    "spotify",
+    "uri",
+    "link",
+    "http",
+    "url",
+    "parse",
+    "object"
+  ],
+  "author": "Nathan Rajlich <nathan@tootallnate.net> (http://n8.io/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TooTallNate/spotify-uri/issues"
+  },
+  "devDependencies": {
+    "mocha": "~1.10.0"
+  }
+}
