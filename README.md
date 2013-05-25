@@ -8,8 +8,16 @@ into a JavaScript object so you can work with the further.
 Installation
 ------------
 
+Install for node.js using `npm`:
+
 ``` bash
 $ npm install spotify-uri
+```
+
+Install for component(1) using `component`:
+
+``` bash
+$ component install TooTallNate/spotify-uri
 ```
 
 
