@@ -11,6 +11,7 @@ var qs = require('querystring');
  */
 
 module.exports = parse;
+parse.parse = parse;
 
 /**
  * Parses a "Spotify URI".
