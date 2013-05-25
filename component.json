@@ -1,0 +1,26 @@
+{
+  "name": "spotify-uri",
+  "repo": "TooTallNate/spotify-uri",
+  "description": "Parse the various Spotify URI formats into Objects",
+  "version": "0.0.1",
+  "keywords": [
+    "spotify",
+    "uri",
+    "link",
+    "http",
+    "url",
+    "parse",
+    "object"
+  ],
+  "dependencies": {
+    "component/url": "*",
+    "component/querystring": "*"
+  },
+  "development": {
+    "component/assert": "*"
+  },
+  "scripts": [
+    "index.js"
+  ],
+  "license": "MIT"
+}
