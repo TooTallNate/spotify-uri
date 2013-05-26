@@ -42,4 +42,10 @@ console.log(parsed);
 //   id: '1pKYYY0dkg23sQQXi0Q5zN' }
 ```
 
-See the `test` directory for some more examples of Spotify URIs.
+See the [test cases][tests] for some more examples of Spotify URIs.
+
+## License
+
+  MIT
+
+[tests]: http://tootallnate.github.io/spotify-uri/
