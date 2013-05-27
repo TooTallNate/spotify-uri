@@ -38,6 +38,12 @@ describe('HTTP URLs', function () {
       assert('A Shot of Crisis' == obj.track);
       assert(161 == obj.seconds);
     });
+    it('should parse "search" URLs', function () {
+      var url = 'http://open.spotify.com/search/artist%3ah%c3%a4xor';
+      var obj = parse(url);
+      assert('search' == obj.type);
+      assert('artist:hÃ¤xor' == obj.query);
+    });
   });
   describe('play.spotify.com', function () {
     it('should parse "track" URLs', function () {
