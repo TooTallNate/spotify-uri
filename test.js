@@ -38,6 +38,12 @@ describe('HTTP URLs', function () {
       assert('A Shot of Crisis' == obj.track);
       assert(161 == obj.seconds);
     });
+    it('should parse "search" URLs', function () {
+      var url = 'http://open.spotify.com/search/artist%3ah%c3%a4xor';
+      var obj = parse(url);
+      assert('search' == obj.type);
+      assert('artist:hÃ¤xor' == obj.query);
+    });
   });
   describe('play.spotify.com', function () {
     it('should parse "track" URLs', function () {
@@ -98,5 +104,17 @@ describe('Spotify URIs', function () {
     assert('playlist' == obj.type);
     assert('tootallnate' == obj.user);
     assert(true == obj.starred);
+  });
+  it('should parse "search" URIs', function () {
+    var uri = 'spotify:search:artist:h%C3%A4xor';
+    var obj = parse(uri);
+    assert('search' == obj.type);
+    assert('artist:hÃ¤xor' == obj.query);
+  });
+  it('should parse combined "search"', function () {
+    var uri = 'spotify:search:genre:hip-hop+year:1980-1989';
+    var obj = parse(uri);
+    assert('search' == obj.type);
+    assert('genre:hip-hop year:1980-1989' == obj.query);
   });
 });
