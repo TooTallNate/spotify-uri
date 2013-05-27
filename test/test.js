@@ -99,4 +99,16 @@ describe('Spotify URIs', function () {
     assert('tootallnate' == obj.user);
     assert(true == obj.starred);
   });
+  it('should parse "search" URIs', function () {
+    var uri = 'spotify:search:artist:h%C3%A4xor';
+    var obj = parse(uri);
+    assert('search' == obj.type);
+    assert('artist:hÃ¤xor' == obj.query);
+  });
+  it('should parse combined "search"', function () {
+    var uri = 'spotify:search:genre:hip-hop+year:1980-1989';
+    var obj = parse(uri);
+    assert('search' == obj.type);
+    assert('genre:hip-hop year:1980-1989' == obj.query);
+  });
 });

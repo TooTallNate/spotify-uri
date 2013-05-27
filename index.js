@@ -39,7 +39,10 @@ function parse (uri) {
 
 function parseParts (parts, obj) {
   var len = parts.length;
-  if (len >= 3 && 'local' == parts[1]) {
+  if ('search' == parts[1]) {
+    obj.type = 'search';
+    obj.query = unencode(parts.slice(2).join(':'));
+  } else if (len >= 3 && 'local' == parts[1]) {
     // local
     obj.type = 'local';
     obj.artist = unencode(parts[2]);
