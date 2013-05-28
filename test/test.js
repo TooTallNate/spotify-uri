@@ -100,7 +100,16 @@ describe('parse()', function () {
       assert('Yasunori Mitsuda' == obj.artist);
       assert('Chrono Trigger OST' == obj.album);
       assert('A Shot of Crisis' == obj.track);
-      assert(161 == obj.seconds);
+      assert(161 === obj.seconds);
+    });
+    it('should parse "lcoal" track URIs 2', function () {
+      var uri = 'spotify:local:::a:6';
+      var obj = parse(uri);
+      assert('local' == obj.type);
+      assert('' === obj.artist);
+      assert('' === obj.album);
+      assert('a' === obj.track);
+      assert(6 === obj.seconds);
     });
     it('should parse "starred" playlist URIs', function () {
       var uri = 'spotify:user:tootallnate:starred';
@@ -176,6 +185,20 @@ describe('formatOpenURL()', function () {
     var uri = 'spotify:local:Yasunori+Mitsuda:Chrono+Trigger+OST+Disc+2:Ayla%27s+Theme:84';
     var obj = parse(uri);
     var expected = 'http://open.spotify.com/local/Yasunori+Mitsuda/Chrono+Trigger+OST+Disc+2/Ayla%27s+Theme/84';
+    var actual = formatOpenURL(obj);
+    assert(actual == expected);
+  });
+  it('should format "local" URIs 2', function () {
+    var uri = 'spotify:local:::a:6';
+    var obj = parse(uri);
+    var expected = 'http://open.spotify.com/local///a/6';
+    var actual = formatOpenURL(obj);
+    assert(actual == expected);
+  });
+  it('should format "search" URIs', function () {
+    var uri = 'spotify:search:artist%3aDaft+Punk';
+    var obj = parse(uri);
+    var expected = 'http://open.spotify.com/search/artist%3ADaft+Punk';
     var actual = formatOpenURL(obj);
     assert(actual == expected);
   });
