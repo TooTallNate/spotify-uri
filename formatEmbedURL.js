@@ -3,7 +3,6 @@
  * Module dependencies.
  */
 
-var parse = require('./parse');
 var formatURI = require('./formatURI');
 
 /**
@@ -22,6 +21,5 @@ module.exports = formatEmbedURI;
  */
 
 function formatEmbedURI (parsed) {
-  if ('string' == typeof parsed) parsed = parse(parsed);
   return 'https://embed.spotify.com/?uri=' + formatURI(parsed);
 }
