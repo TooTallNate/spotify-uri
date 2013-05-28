@@ -26,20 +26,41 @@ Example
 
 
 ``` javascript
-var parse = require('spotify-uri');
-var parsed;
+var spotifyUri = require('spotify-uri');
+var parsed, uri;
 
-parsed = parse('spotify:track:3GU4cxkfdc3lIp9pFEMMmw');
+// parse Spotify URIs or HTTP URLs into JavaScipt metadata Objects:
+
+parsed = spotifyUri.parse('spotify:track:3GU4cxkfdc3lIp9pFEMMmw');
 console.log(parsed);
 // { uri: 'spotify:track:3GU4cxkfdc3lIp9pFEMMmw',
 //   type: 'track',
 //   id: '3GU4cxkfdc3lIp9pFEMMmw' }
 
-parsed = parse('http://open.spotify.com/track/1pKYYY0dkg23sQQXi0Q5zN');
+parsed = spotifyUri.parse('http://open.spotify.com/track/1pKYYY0dkg23sQQXi0Q5zN');
 console.log(parsed);
 // { uri: 'http://open.spotify.com/track/1pKYYY0dkg23sQQXi0Q5zN',
 //   type: 'track',
 //   id: '1pKYYY0dkg23sQQXi0Q5zN' }
+
+
+// you can also format the parsed objects back into a URI or HTTP URL:
+
+uri = spotifyUri.formatURI(parsed);
+console.log(uri);
+// 'spotify:track:1pKYYY0dkg23sQQXi0Q5zN'
+
+uri = spotifyUri.formatOpenURL(parsed);
+console.log(uri);
+// 'http://open.spotify.com/track/1pKYYY0dkg23sQQXi0Q5zN'
+
+uri = spotifyUri.formatPlayURL(parsed);
+console.log(uri);
+// 'https://play.spotify.com/track/1pKYYY0dkg23sQQXi0Q5zN'
+
+uri = spotifyUri.formatEmbedURL(parsed);
+console.log(uri);
+// 'https://embed.spotify.com/?uri=spotify:track:1pKYYY0dkg23sQQXi0Q5zN'
 ```
 
 See the [test cases][tests] for some more examples of Spotify URIs.
