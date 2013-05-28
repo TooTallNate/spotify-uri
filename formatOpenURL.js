@@ -35,6 +35,9 @@ function formatOpenURL (parsed, base) {
                         '/' + encode(parsed.album) +
                         '/' + encode(parsed.track) +
                         '/' + parsed.seconds;
+  } else if ('search' == parsed.type) {
+    // "search" query
+    return base + '/search/' + encode(parsed.query);
   } else {
     // artist, album, track
     return base + '/' + parsed.type + '/' + parsed.id;
