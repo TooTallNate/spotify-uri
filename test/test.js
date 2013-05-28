@@ -137,11 +137,61 @@ describe('formatURI()', function () {
 
 
 describe('formatOpenURL()', function () {
+  it('should format "artist" URIs', function () {
+    var uri = 'spotify:artist:1gR0gsQYfi6joyO1dlp76N';
+    var obj = parse(uri);
+    var expected = 'http://open.spotify.com/artist/1gR0gsQYfi6joyO1dlp76N';
+    var actual = formatOpenURL(obj);
+    assert(actual == expected);
+  });
+  it('should format "album" URIs', function () {
+    var uri = 'spotify:album:7CjakTZxwIF8oixONe6Bpb';
+    var obj = parse(uri);
+    var expected = 'http://open.spotify.com/album/7CjakTZxwIF8oixONe6Bpb';
+    var actual = formatOpenURL(obj);
+    assert(actual == expected);
+  });
   it('should format "track" URIs', function () {
     var uri = 'spotify:track:4XfokvilxHAOQXfnWD9p0Q';
     var obj = parse(uri);
     var expected = 'http://open.spotify.com/track/4XfokvilxHAOQXfnWD9p0Q';
     var actual = formatOpenURL(obj);
+    assert(actual == expected);
+  });
+  it('should format "playlist" URIs', function () {
+    var uri = 'spotify:user:daftpunkofficial:playlist:6jP6EcvAwqNksccDkIe6hX';
+    var obj = parse(uri);
+    var expected = 'http://open.spotify.com/user/daftpunkofficial/playlist/6jP6EcvAwqNksccDkIe6hX';
+    var actual = formatOpenURL(obj);
+    assert(actual == expected);
+  });
+  it('should format "starred" playlist URIs', function () {
+    var uri = 'spotify:user:tootallnate:starred';
+    var obj = parse(uri);
+    var expected = 'http://open.spotify.com/user/tootallnate/starred';
+    var actual = formatOpenURL(obj);
+    assert(actual == expected);
+  });
+});
+
+
+describe('formatPlayURL()', function () {
+  it('should format "track" URIs', function () {
+    var uri = 'spotify:track:4XfokvilxHAOQXfnWD9p0Q';
+    var obj = parse(uri);
+    var expected = 'https://play.spotify.com/track/4XfokvilxHAOQXfnWD9p0Q';
+    var actual = formatPlayURL(obj);
+    assert(actual == expected);
+  });
+});
+
+
+describe('formatEmbedURL()', function () {
+  it('should format "track" URIs', function () {
+    var uri = 'spotify:track:4XfokvilxHAOQXfnWD9p0Q';
+    var obj = parse(uri);
+    var expected = 'https://embed.spotify.com/?uri=spotify:track:4XfokvilxHAOQXfnWD9p0Q';
+    var actual = formatEmbedURL(obj);
     assert(actual == expected);
   });
 });
