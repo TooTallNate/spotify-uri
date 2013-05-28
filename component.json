@@ -20,7 +20,12 @@
     "component/assert": "*"
   },
   "scripts": [
-    "index.js"
+    "index.js",
+    "parse.js",
+    "formatURI.js",
+    "formatOpenURL.js",
+    "formatPlayURL.js",
+    "formatEmbedURL.js"
   ],
   "license": "MIT"
 }
