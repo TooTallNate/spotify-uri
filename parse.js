@@ -47,24 +47,24 @@ function parseParts (parts, obj) {
   var len = parts.length;
   if ('search' == parts[1]) {
     obj.type = 'search';
-    obj.query = unencode(parts.slice(2).join(':'));
+    obj.query = decode(parts.slice(2).join(':'));
   } else if (len >= 3 && 'local' == parts[1]) {
     // local
     obj.type = 'local';
-    obj.artist = unencode(parts[2]);
-    obj.album = unencode(parts[3]);
-    obj.track = unencode(parts[4]);
+    obj.artist = decode(parts[2]);
+    obj.album = decode(parts[3]);
+    obj.track = decode(parts[4]);
     obj.seconds = +parts[5];
   } else if (len >= 5) {
     // playlist
-    obj.user = unencode(parts[2]);
+    obj.user = decode(parts[2]);
     obj.type = parts[3];
     obj.id = parts[4];
   } else if (len >= 4 && 'starred' == parts[3]) {
     // starred
     obj.type = 'playlist';
     obj.starred = true;
-    obj.user = unencode(parts[2]);
+    obj.user = decode(parts[2]);
   } else if (len >= 3) {
     // track, artist, album
     obj.type = parts[1];
@@ -72,6 +72,12 @@ function parseParts (parts, obj) {
   }
 }
 
-function unencode (str) {
+/**
+ * URL-decode, also replaces `+` (plus) chars with ` ` (space).
+ *
+ * @api private
+ */
+
+function decode (str) {
   return unescape(str).replace(/\+/g, ' ');
 }
