@@ -172,6 +172,13 @@ describe('formatOpenURL()', function () {
     var actual = formatOpenURL(obj);
     assert(actual == expected);
   });
+  it('should format "local" URIs', function () {
+    var uri = 'spotify:local:Yasunori+Mitsuda:Chrono+Trigger+OST+Disc+2:Ayla%27s+Theme:84';
+    var obj = parse(uri);
+    var expected = 'http://open.spotify.com/local/Yasunori+Mitsuda/Chrono+Trigger+OST+Disc+2/Ayla%27s+Theme/84';
+    var actual = formatOpenURL(obj);
+    assert(actual == expected);
+  });
 });
 
 
