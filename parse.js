@@ -75,6 +75,7 @@ function parseParts (parts, obj) {
 /**
  * URL-decode, also replaces `+` (plus) chars with ` ` (space).
  *
+ * @param {String} str
  * @api private
  */
 
