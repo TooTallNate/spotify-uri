@@ -21,8 +21,19 @@ module.exports = formatURI;
 
 function formatURI (parsed) {
   if ('search' == parsed.type) {
-    return 'spotify:search:' + escape(parsed.query);
+    return 'spotify:search:' + encode(parsed.query);
   } else {
     return 'spotify:' + parsed.type + ':' + parsed.id;
   }
+}
+
+/**
+ * URL-encode, also turn ` ` (space) chars into `+` (plus).
+ *
+ * @param {String} str
+ * @api private
+ */
+
+function encode (str) {
+  return escape(str.replace(/ /g, '+'));
 }
