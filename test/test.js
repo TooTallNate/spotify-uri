@@ -142,6 +142,13 @@ describe('formatURI()', function () {
     var actual = formatURI(obj);
     assert(actual == expected);
   });
+  it('should format "search" query URIs', function () {
+    var url = 'spotify:search:artist%3aDaft+Punk';
+    var obj = parse(url);
+    var expected = 'spotify:search:artist%3ADaft+Punk';
+    var actual = formatURI(obj);
+    assert(actual == expected);
+  });
 });
 
 
