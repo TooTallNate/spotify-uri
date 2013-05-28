@@ -20,52 +20,50 @@ var formatPlayURL = parse.formatPlayURL;
 var formatEmbedURL = parse.formatEmbedURL;
 
 describe('parse()', function () {
-  describe('HTTP URLs', function () {
-    describe('open.spotify.com', function () {
-      it('should parse "track" URLs', function () {
-        var url = 'http://open.spotify.com/track/10M2REwwztVxgr0szw7UwD';
-        var obj = parse(url);
-        assert('track' == obj.type);
-        assert('10M2REwwztVxgr0szw7UwD' == obj.id);
-      });
-      it('should parse "playlist" URLs', function () {
-        var url = 'http://open.spotify.com/user/tootallnate/playlist/0Lt5S4hGarhtZmtz7BNTeX';
-        var obj = parse(url);
-        assert('playlist' == obj.type);
-        assert('tootallnate' == obj.user);
-        assert('0Lt5S4hGarhtZmtz7BNTeX' == obj.id);
-      });
-      it('should parse "local" URLs', function () {
-        var url = 'http://open.spotify.com/local/Yasunori+Mitsuda/Chrono+Trigger+OST/A+Shot+of+Crisis/161';
-        var obj = parse(url);
-        assert('local' == obj.type);
-        assert('Yasunori Mitsuda' == obj.artist);
-        assert('Chrono Trigger OST' == obj.album);
-        assert('A Shot of Crisis' == obj.track);
-        assert(161 == obj.seconds);
-      });
-      it('should parse "search" URLs', function () {
-        var url = 'http://open.spotify.com/search/artist%3ah%c3%a4xor';
-        var obj = parse(url);
-        assert('search' == obj.type);
-        assert('artist:hÃ¤xor' == obj.query);
-      });
+  describe('"open.spotify.com" URLs', function () {
+    it('should parse "track" URLs', function () {
+      var url = 'http://open.spotify.com/track/10M2REwwztVxgr0szw7UwD';
+      var obj = parse(url);
+      assert('track' == obj.type);
+      assert('10M2REwwztVxgr0szw7UwD' == obj.id);
     });
-    describe('play.spotify.com', function () {
-      it('should parse "track" URLs', function () {
-        var url = 'https://play.spotify.com/track/5W3cjX2J3tjhG8zb6u0qHn';
-        var obj = parse(url);
-        assert('track' == obj.type);
-        assert('5W3cjX2J3tjhG8zb6u0qHn' == obj.id);
-      });
+    it('should parse "playlist" URLs', function () {
+      var url = 'http://open.spotify.com/user/tootallnate/playlist/0Lt5S4hGarhtZmtz7BNTeX';
+      var obj = parse(url);
+      assert('playlist' == obj.type);
+      assert('tootallnate' == obj.user);
+      assert('0Lt5S4hGarhtZmtz7BNTeX' == obj.id);
     });
-    describe('embed.spotify.com', function () {
-      it('should parse "track" URLs', function () {
-        var url = 'https://embed.spotify.com/?uri=spotify:track:5oscsdDQ0NpjsTgpG4bI8S';
-        var obj = parse(url);
-        assert('track' == obj.type);
-        assert('5oscsdDQ0NpjsTgpG4bI8S' == obj.id);
-      });
+    it('should parse "local" URLs', function () {
+      var url = 'http://open.spotify.com/local/Yasunori+Mitsuda/Chrono+Trigger+OST/A+Shot+of+Crisis/161';
+      var obj = parse(url);
+      assert('local' == obj.type);
+      assert('Yasunori Mitsuda' == obj.artist);
+      assert('Chrono Trigger OST' == obj.album);
+      assert('A Shot of Crisis' == obj.track);
+      assert(161 == obj.seconds);
+    });
+    it('should parse "search" URLs', function () {
+      var url = 'http://open.spotify.com/search/artist%3ah%c3%a4xor';
+      var obj = parse(url);
+      assert('search' == obj.type);
+      assert('artist:hÃ¤xor' == obj.query);
+    });
+  });
+  describe('"play.spotify.com" URLs', function () {
+    it('should parse "track" URLs', function () {
+      var url = 'https://play.spotify.com/track/5W3cjX2J3tjhG8zb6u0qHn';
+      var obj = parse(url);
+      assert('track' == obj.type);
+      assert('5W3cjX2J3tjhG8zb6u0qHn' == obj.id);
+    });
+  });
+  describe('"embed.spotify.com" URLs', function () {
+    it('should parse "track" URLs', function () {
+      var url = 'https://embed.spotify.com/?uri=spotify:track:5oscsdDQ0NpjsTgpG4bI8S';
+      var obj = parse(url);
+      assert('track' == obj.type);
+      assert('5oscsdDQ0NpjsTgpG4bI8S' == obj.id);
     });
   });
 
