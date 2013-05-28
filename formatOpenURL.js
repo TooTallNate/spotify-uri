@@ -12,22 +12,17 @@ var parse = require('./parse');
 module.exports = formatOpenURL;
 
 /**
- * Base URL.
- */
-
-var base = 'http://open.spotify.com';
-
-/**
- * Format a "parsed Spotify object" back into a Spotify "open.spotify.com" URL
- * string.
+ * Format a "parsed Spotify object" back into a Spotify
+ * "open.spotify.com" URL string.
  *
  * @param {Object} parsed
  * @return {String}
  * @api public
  */
 
-function formatOpenURL (parsed) {
+function formatOpenURL (parsed, base) {
   if ('string' == typeof parsed) parsed = parse(parsed);
+  if ('string' != typeof base) base = 'http://open.spotify.com';
   if (parsed.starred) {
     // "starred" playlist
     return base + '/user/' + encode(parsed.user) + '/starred';
