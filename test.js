@@ -14,8 +14,13 @@ try {
   parse = require('../');
 }
 
-describe('HTTP URLs', function () {
-  describe('open.spotify.com', function () {
+var formatURI = parse.formatURI;
+var formatOpenURL = parse.formatOpenURL;
+var formatPlayURL = parse.formatPlayURL;
+var formatEmbedURL = parse.formatEmbedURL;
+
+describe('parse()', function () {
+  describe('"open.spotify.com" URLs', function () {
     it('should parse "track" URLs', function () {
       var url = 'http://open.spotify.com/track/10M2REwwztVxgr0szw7UwD';
       var obj = parse(url);
@@ -45,7 +50,7 @@ describe('HTTP URLs', function () {
       assert('artist:hÃ¤xor' == obj.query);
     });
   });
-  describe('play.spotify.com', function () {
+  describe('"play.spotify.com" URLs', function () {
     it('should parse "track" URLs', function () {
       var url = 'https://play.spotify.com/track/5W3cjX2J3tjhG8zb6u0qHn';
       var obj = parse(url);
@@ -53,7 +58,7 @@ describe('HTTP URLs', function () {
       assert('5W3cjX2J3tjhG8zb6u0qHn' == obj.id);
     });
   });
-  describe('embed.spotify.com', function () {
+  describe('"embed.spotify.com" URLs', function () {
     it('should parse "track" URLs', function () {
       var url = 'https://embed.spotify.com/?uri=spotify:track:5oscsdDQ0NpjsTgpG4bI8S';
       var obj = parse(url);
@@ -61,60 +66,169 @@ describe('HTTP URLs', function () {
       assert('5oscsdDQ0NpjsTgpG4bI8S' == obj.id);
     });
   });
+
+  describe('Spotify URIs', function () {
+    it('should parse "ablum" URIs', function () {
+      var uri = 'spotify:album:4m2880jivSbbyEGAKfITCa';
+      var obj = parse(uri);
+      assert('album' == obj.type);
+      assert('4m2880jivSbbyEGAKfITCa' == obj.id);
+    });
+    it('should parse "artist" URIs', function () {
+      var uri = 'spotify:artist:4tZwfgrHOc3mvqYlEYSvVi';
+      var obj = parse(uri);
+      assert('artist' == obj.type);
+      assert('4tZwfgrHOc3mvqYlEYSvVi' == obj.id);
+    });
+    it('should parse "track" URIs', function () {
+      var uri = 'spotify:track:5CMjjywI0eZMixPeqNd75R';
+      var obj = parse(uri);
+      assert('track' == obj.type);
+      assert('5CMjjywI0eZMixPeqNd75R' == obj.id);
+    });
+    it('should parse "playlist" URIs', function () {
+      var uri = 'spotify:user:daftpunkofficial:playlist:6jP6EcvAwqNksccDkIe6hX';
+      var obj = parse(uri);
+      assert('playlist' == obj.type);
+      assert('daftpunkofficial' == obj.user);
+      assert('6jP6EcvAwqNksccDkIe6hX' == obj.id);
+    });
+    it('should parse "local" track URIs', function () {
+      var uri = 'spotify:local:Yasunori+Mitsuda:Chrono+Trigger+OST:A+Shot+of+Crisis:161';
+      var obj = parse(uri);
+      assert('local' == obj.type);
+      assert('Yasunori Mitsuda' == obj.artist);
+      assert('Chrono Trigger OST' == obj.album);
+      assert('A Shot of Crisis' == obj.track);
+      assert(161 === obj.seconds);
+    });
+    it('should parse "lcoal" track URIs 2', function () {
+      var uri = 'spotify:local:::a:6';
+      var obj = parse(uri);
+      assert('local' == obj.type);
+      assert('' === obj.artist);
+      assert('' === obj.album);
+      assert('a' === obj.track);
+      assert(6 === obj.seconds);
+    });
+    it('should parse "starred" playlist URIs', function () {
+      var uri = 'spotify:user:tootallnate:starred';
+      var obj = parse(uri);
+      assert('playlist' == obj.type);
+      assert('tootallnate' == obj.user);
+      assert(true == obj.starred);
+    });
+    it('should parse "search" URIs', function () {
+      var uri = 'spotify:search:artist:h%C3%A4xor';
+      var obj = parse(uri);
+      assert('search' == obj.type);
+      assert('artist:hÃ¤xor' == obj.query);
+    });
+    it('should parse combined "search"', function () {
+      var uri = 'spotify:search:genre:hip-hop+year:1980-1989';
+      var obj = parse(uri);
+      assert('search' == obj.type);
+      assert('genre:hip-hop year:1980-1989' == obj.query);
+    });
+  });
 });
 
-describe('Spotify URIs', function () {
-  it('should parse "ablum" URIs', function () {
-    var uri = 'spotify:album:4m2880jivSbbyEGAKfITCa';
-    var obj = parse(uri);
-    assert('album' == obj.type);
-    assert('4m2880jivSbbyEGAKfITCa' == obj.id);
+
+describe('formatURI()', function () {
+  it('should format "artist" open URLs', function () {
+    var url = 'http://open.spotify.com/artist/1gR0gsQYfi6joyO1dlp76N';
+    var obj = parse(url);
+    var expected = 'spotify:artist:1gR0gsQYfi6joyO1dlp76N';
+    var actual = formatURI(obj);
+    assert(actual == expected);
   });
-  it('should parse "artist" URIs', function () {
-    var uri = 'spotify:artist:4tZwfgrHOc3mvqYlEYSvVi';
-    var obj = parse(uri);
-    assert('artist' == obj.type);
-    assert('4tZwfgrHOc3mvqYlEYSvVi' == obj.id);
+  it('should format "search" query URIs', function () {
+    var url = 'spotify:search:artist%3aDaft+Punk';
+    var obj = parse(url);
+    var expected = 'spotify:search:artist%3ADaft+Punk';
+    var actual = formatURI(obj);
+    assert(actual == expected);
   });
-  it('should parse "track" URIs', function () {
-    var uri = 'spotify:track:5CMjjywI0eZMixPeqNd75R';
+});
+
+
+describe('formatOpenURL()', function () {
+  it('should format "artist" URIs', function () {
+    var uri = 'spotify:artist:1gR0gsQYfi6joyO1dlp76N';
     var obj = parse(uri);
-    assert('track' == obj.type);
-    assert('5CMjjywI0eZMixPeqNd75R' == obj.id);
+    var expected = 'http://open.spotify.com/artist/1gR0gsQYfi6joyO1dlp76N';
+    var actual = formatOpenURL(obj);
+    assert(actual == expected);
   });
-  it('should parse "playlist" URIs', function () {
+  it('should format "album" URIs', function () {
+    var uri = 'spotify:album:7CjakTZxwIF8oixONe6Bpb';
+    var obj = parse(uri);
+    var expected = 'http://open.spotify.com/album/7CjakTZxwIF8oixONe6Bpb';
+    var actual = formatOpenURL(obj);
+    assert(actual == expected);
+  });
+  it('should format "track" URIs', function () {
+    var uri = 'spotify:track:4XfokvilxHAOQXfnWD9p0Q';
+    var obj = parse(uri);
+    var expected = 'http://open.spotify.com/track/4XfokvilxHAOQXfnWD9p0Q';
+    var actual = formatOpenURL(obj);
+    assert(actual == expected);
+  });
+  it('should format "playlist" URIs', function () {
     var uri = 'spotify:user:daftpunkofficial:playlist:6jP6EcvAwqNksccDkIe6hX';
     var obj = parse(uri);
-    assert('playlist' == obj.type);
-    assert('daftpunkofficial' == obj.user);
-    assert('6jP6EcvAwqNksccDkIe6hX' == obj.id);
+    var expected = 'http://open.spotify.com/user/daftpunkofficial/playlist/6jP6EcvAwqNksccDkIe6hX';
+    var actual = formatOpenURL(obj);
+    assert(actual == expected);
   });
-  it('should parse "local" track URIs', function () {
-    var uri = 'spotify:local:Yasunori+Mitsuda:Chrono+Trigger+OST:A+Shot+of+Crisis:161';
-    var obj = parse(uri);
-    assert('local' == obj.type);
-    assert('Yasunori Mitsuda' == obj.artist);
-    assert('Chrono Trigger OST' == obj.album);
-    assert('A Shot of Crisis' == obj.track);
-    assert(161 == obj.seconds);
-  });
-  it('should parse "starred" playlist URIs', function () {
+  it('should format "starred" playlist URIs', function () {
     var uri = 'spotify:user:tootallnate:starred';
     var obj = parse(uri);
-    assert('playlist' == obj.type);
-    assert('tootallnate' == obj.user);
-    assert(true == obj.starred);
+    var expected = 'http://open.spotify.com/user/tootallnate/starred';
+    var actual = formatOpenURL(obj);
+    assert(actual == expected);
   });
-  it('should parse "search" URIs', function () {
-    var uri = 'spotify:search:artist:h%C3%A4xor';
+  it('should format "local" URIs', function () {
+    var uri = 'spotify:local:Yasunori+Mitsuda:Chrono+Trigger+OST+Disc+2:Ayla%27s+Theme:84';
     var obj = parse(uri);
-    assert('search' == obj.type);
-    assert('artist:hÃ¤xor' == obj.query);
+    var expected = 'http://open.spotify.com/local/Yasunori+Mitsuda/Chrono+Trigger+OST+Disc+2/Ayla%27s+Theme/84';
+    var actual = formatOpenURL(obj);
+    assert(actual == expected);
   });
-  it('should parse combined "search"', function () {
-    var uri = 'spotify:search:genre:hip-hop+year:1980-1989';
+  it('should format "local" URIs 2', function () {
+    var uri = 'spotify:local:::a:6';
     var obj = parse(uri);
-    assert('search' == obj.type);
-    assert('genre:hip-hop year:1980-1989' == obj.query);
+    var expected = 'http://open.spotify.com/local///a/6';
+    var actual = formatOpenURL(obj);
+    assert(actual == expected);
+  });
+  it('should format "search" URIs', function () {
+    var uri = 'spotify:search:artist%3aDaft+Punk';
+    var obj = parse(uri);
+    var expected = 'http://open.spotify.com/search/artist%3ADaft+Punk';
+    var actual = formatOpenURL(obj);
+    assert(actual == expected);
+  });
+});
+
+
+describe('formatPlayURL()', function () {
+  it('should format "track" URIs', function () {
+    var uri = 'spotify:track:4XfokvilxHAOQXfnWD9p0Q';
+    var obj = parse(uri);
+    var expected = 'https://play.spotify.com/track/4XfokvilxHAOQXfnWD9p0Q';
+    var actual = formatPlayURL(obj);
+    assert(actual == expected);
+  });
+});
+
+
+describe('formatEmbedURL()', function () {
+  it('should format "track" URIs', function () {
+    var uri = 'spotify:track:4XfokvilxHAOQXfnWD9p0Q';
+    var obj = parse(uri);
+    var expected = 'https://embed.spotify.com/?uri=spotify:track:4XfokvilxHAOQXfnWD9p0Q';
+    var actual = formatEmbedURL(obj);
+    assert(actual == expected);
   });
 });
