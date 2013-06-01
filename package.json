@@ -1,7 +1,7 @@
 {
   "name": "spotify-uri",
-  "version": "0.0.1",
-  "description": "Parse the various Spotify URI formats into Objects",
+  "version": "0.1.0",
+  "description": "Parse the various Spotify URI formats into Objects and back",
   "main": "index.js",
   "scripts": {
     "test": "mocha --reporter spec test/test.js"
