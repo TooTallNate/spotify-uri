@@ -113,7 +113,7 @@ Formats a parsed URI Object back into a Spotify HTTPS "embed" URL. For example:
 
 ``` js
 var parsed = spotifyUri.parse('spotify:track:6JmI8SpUHoQ4yveHLjTrko');
-var uri = spotifyUri.formatOpenURL(parsed);
+var uri = spotifyUri.formatEmbedURL(parsed);
 console.log(uri);
 // 'https://embed.spotify.com/?uri=spotify:track:6JmI8SpUHoQ4yveHLjTrko'
 ```
