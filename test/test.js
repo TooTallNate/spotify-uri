@@ -50,6 +50,7 @@ describe('parse()', function () {
       assert('artist:hÃ¤xor' == obj.query);
     });
   });
+
   describe('"play.spotify.com" URLs', function () {
     it('should parse "track" URLs', function () {
       var url = 'https://play.spotify.com/track/5W3cjX2J3tjhG8zb6u0qHn';
@@ -58,6 +59,7 @@ describe('parse()', function () {
       assert('5W3cjX2J3tjhG8zb6u0qHn' == obj.id);
     });
   });
+
   describe('"embed.spotify.com" URLs', function () {
     it('should parse "track" URLs', function () {
       var url = 'https://embed.spotify.com/?uri=spotify:track:5oscsdDQ0NpjsTgpG4bI8S';
