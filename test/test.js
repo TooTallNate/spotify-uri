@@ -104,7 +104,7 @@ describe('parse()', function () {
       assert('A Shot of Crisis' == obj.track);
       assert(161 === obj.seconds);
     });
-    it('should parse "lcoal" track URIs 2', function () {
+    it('should parse "local" track URIs 2', function () {
       var uri = 'spotify:local:::a:6';
       var obj = parse(uri);
       assert('local' == obj.type);
