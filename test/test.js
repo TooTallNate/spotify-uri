@@ -49,6 +49,12 @@ describe('parse()', function () {
       assert('search' == obj.type);
       assert('artist:hÃ¤xor' == obj.query);
     });
+    it('should parse "user" URLs', function () {
+      var url = 'http://open.spotify.com/user/tootallnate';
+      var obj = parse(url);
+      assert('user' == obj.type);
+      assert('tootallnate' == obj.id);
+    });
   });
 
   describe('"play.spotify.com" URLs', function () {
