@@ -157,7 +157,7 @@ describe('formatURI()', function () {
     var actual = formatURI(obj);
     assert(actual == expected);
   });
-  it('should parse "starred" playlist open URLs', function () {
+  it('should format "starred" playlist open URLs', function () {
     var url = 'http://open.spotify.com/user/syknyk/starred';
     var obj = parse(url);
     var expected = 'spotify:user:syknyk:starred';
