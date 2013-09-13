@@ -20,9 +20,15 @@ module.exports = formatURI;
  */
 
 function formatURI (parsed) {
-  if ('search' == parsed.type) {
+  if ('string' == typeof parsed) parsed = parse(parsed);
+  if (parsed.starred) {
+    // user's "starred" playlist
+    return 'spotify:user:' + encode(parsed.user) + ':starred';
+  } else if ('search' == parsed.type) {
+    // "search" query
     return 'spotify:search:' + encode(parsed.query);
   } else {
+    // artist, album, track
     return 'spotify:' + parsed.type + ':' + parsed.id;
   }
 }
