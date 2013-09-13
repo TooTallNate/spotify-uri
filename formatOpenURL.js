@@ -24,7 +24,7 @@ function formatOpenURL (parsed, base) {
   if ('string' == typeof parsed) parsed = parse(parsed);
   if ('string' != typeof base) base = 'http://open.spotify.com';
   if (parsed.starred) {
-    // "starred" playlist
+    // user's "starred" playlist
     return base + '/user/' + encode(parsed.user) + '/starred';
   } else if ('playlist' == parsed.type) {
     // user "playlist"
