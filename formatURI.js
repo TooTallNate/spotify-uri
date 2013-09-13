@@ -24,6 +24,9 @@ function formatURI (parsed) {
   if (parsed.starred) {
     // user's "starred" playlist
     return 'spotify:user:' + encode(parsed.user) + ':starred';
+  } else if ('playlist' == parsed.type) {
+    // user "playlist"
+    return 'spotify:user:' + encode(parsed.user) + ':playlist:' + parsed.id;
   } else if ('search' == parsed.type) {
     // "search" query
     return 'spotify:search:' + encode(parsed.query);

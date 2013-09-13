@@ -164,6 +164,13 @@ describe('formatURI()', function () {
     var actual = formatURI(obj);
     assert(actual == expected);
   });
+  it('should parse "playlist" URIs', function () {
+    var url = 'spotify:user:syknyk:playlist:0Idyatn0m08Y48tiOovNd9';
+    var obj = parse(url);
+    var expected = 'spotify:user:syknyk:playlist:0Idyatn0m08Y48tiOovNd9';
+    var actual = formatURI(obj);
+    assert(actual == expected);
+  });
 });
 
 
