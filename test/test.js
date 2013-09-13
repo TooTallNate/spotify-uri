@@ -171,6 +171,13 @@ describe('formatURI()', function () {
     var actual = formatURI(obj);
     assert(actual == expected);
   });
+  it('should parse "local" file URIs', function () {
+    var url = 'spotify:local:Flite%2c+Medium+Minus:YouTube:Find+What+You+Love:399';
+    var obj = parse(url);
+    var expected = 'spotify:local:Flite%2C+Medium+Minus:YouTube:Find+What+You+Love:399';
+    var actual = formatURI(obj);
+    assert(actual == expected);
+  });
 });
 
 

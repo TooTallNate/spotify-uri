@@ -27,6 +27,12 @@ function formatURI (parsed) {
   } else if ('playlist' == parsed.type) {
     // user "playlist"
     return 'spotify:user:' + encode(parsed.user) + ':playlist:' + parsed.id;
+  } else if ('local' == parsed.type) {
+    // "local" file
+    return 'spotify:local:' + encode(parsed.artist) +
+                        ':' + encode(parsed.album) +
+                        ':' + encode(parsed.track) +
+                        ':' + parsed.seconds;
   } else if ('search' == parsed.type) {
     // "search" query
     return 'spotify:search:' + encode(parsed.query);
