@@ -1,6 +1,7 @@
 spotify-uri
 ===========
 ### Parse the various Spotify URI formats into Objects and back
+[![Build Status](https://secure.travis-ci.org/TooTallNate/spotify-uri.png)](http://travis-ci.org/TooTallNate/spotify-uri)
 
 Spotify URIs get passed around in a variety of flavors. This module parses them
 into a JavaScript object so you can work with the further. You can also convert
