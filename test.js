@@ -49,7 +49,14 @@ describe('parse()', function () {
       assert('search' == obj.type);
       assert('artist:hÃ¤xor' == obj.query);
     });
+    it('should parse "user" URLs', function () {
+      var url = 'http://open.spotify.com/user/tootallnate';
+      var obj = parse(url);
+      assert('user' == obj.type);
+      assert('tootallnate' == obj.id);
+    });
   });
+
   describe('"play.spotify.com" URLs', function () {
     it('should parse "track" URLs', function () {
       var url = 'https://play.spotify.com/track/5W3cjX2J3tjhG8zb6u0qHn';
@@ -58,6 +65,7 @@ describe('parse()', function () {
       assert('5W3cjX2J3tjhG8zb6u0qHn' == obj.id);
     });
   });
+
   describe('"embed.spotify.com" URLs', function () {
     it('should parse "track" URLs', function () {
       var url = 'https://embed.spotify.com/?uri=spotify:track:5oscsdDQ0NpjsTgpG4bI8S';
@@ -102,7 +110,7 @@ describe('parse()', function () {
       assert('A Shot of Crisis' == obj.track);
       assert(161 === obj.seconds);
     });
-    it('should parse "lcoal" track URIs 2', function () {
+    it('should parse "local" track URIs 2', function () {
       var uri = 'spotify:local:::a:6';
       var obj = parse(uri);
       assert('local' == obj.type);
@@ -146,6 +154,27 @@ describe('formatURI()', function () {
     var url = 'spotify:search:artist%3aDaft+Punk';
     var obj = parse(url);
     var expected = 'spotify:search:artist%3ADaft+Punk';
+    var actual = formatURI(obj);
+    assert(actual == expected);
+  });
+  it('should format "starred" playlist open URLs', function () {
+    var url = 'http://open.spotify.com/user/syknyk/starred';
+    var obj = parse(url);
+    var expected = 'spotify:user:syknyk:starred';
+    var actual = formatURI(obj);
+    assert(actual == expected);
+  });
+  it('should parse "playlist" URIs', function () {
+    var url = 'spotify:user:syknyk:playlist:0Idyatn0m08Y48tiOovNd9';
+    var obj = parse(url);
+    var expected = 'spotify:user:syknyk:playlist:0Idyatn0m08Y48tiOovNd9';
+    var actual = formatURI(obj);
+    assert(actual == expected);
+  });
+  it('should parse "local" file URIs', function () {
+    var url = 'spotify:local:Flite%2c+Medium+Minus:YouTube:Find+What+You+Love:399';
+    var obj = parse(url);
+    var expected = 'spotify:local:Flite%2C+Medium+Minus:YouTube:Find+What+You+Love:399';
     var actual = formatURI(obj);
     assert(actual == expected);
   });
