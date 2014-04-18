@@ -10,7 +10,7 @@ them back into Spotify URIs or HTTP URLs.
 Installation
 ------------
 
-Install for node.js using `npm`:
+Install for node.js or browserify using `npm`:
 
 ``` bash
 $ npm install spotify-uri
