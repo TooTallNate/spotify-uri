@@ -1,6 +1,9 @@
 spotify-uri
 ===========
 ### Parse the various Spotify URI formats into Objects and back
+
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/spotify-uri.svg)](https://saucelabs.com/u/spotify-uri)
+
 [![Build Status](https://travis-ci.org/TooTallNate/spotify-uri.svg?branch=master)](https://travis-ci.org/TooTallNate/spotify-uri)
 
 Spotify URIs get passed around in a variety of flavors. This module parses them
