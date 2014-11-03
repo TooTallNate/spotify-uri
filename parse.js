@@ -80,5 +80,5 @@ function parseParts (parts, obj) {
  */
 
 function decode (str) {
-  return unescape(str).replace(/\+/g, ' ');
+  return decodeURIComponent(str).replace(/\+/g, ' ');
 }
