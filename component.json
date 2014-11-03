@@ -2,7 +2,7 @@
   "name": "spotify-uri",
   "repo": "TooTallNate/spotify-uri",
   "description": "Parse the various Spotify URI formats into Objects and back",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "keywords": [
     "spotify",
     "uri",
