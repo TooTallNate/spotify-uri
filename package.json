@@ -4,7 +4,7 @@
   "description": "Parse the various Spotify URI formats into Objects and back",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --reporter spec test/test.js"
+    "test": "make test"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,7 @@
     "url": "https://github.com/TooTallNate/spotify-uri/issues"
   },
   "devDependencies": {
-    "mocha": "~1.10.0"
+    "mocha": "~1.10.0",
+    "zuul": "~1.13.0"
   }
 }
