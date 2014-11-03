@@ -4,15 +4,7 @@
  */
 
 var assert = require('assert');
-var parse;
-
-try {
-  // component
-  parse = require('spotify-uri');
-} catch (e) {
-  // node.js
-  parse = require('../');
-}
+var parse = require('../');
 
 var formatURI = parse.formatURI;
 var formatOpenURL = parse.formatOpenURL;
