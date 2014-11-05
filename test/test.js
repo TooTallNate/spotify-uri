@@ -39,7 +39,19 @@ describe('parse()', function () {
       var url = 'http://open.spotify.com/search/artist%3ah%c3%a4xor';
       var obj = parse(url);
       assert('search' == obj.type);
-      assert('artist:hÃ¤xor' == obj.query);
+      assert('artist:häxor' == obj.query);
+    });
+    it('should parse "encoded special characters" in URLs', function () {
+      var url = 'http://open.spotify.com/user/hitradio%c3%b63';
+      var obj = parse(url);
+      assert('user', obj.type);
+      assert('hitradioö3', obj.user);
+    });
+    it('should parse "special characters" in URLs', function () {
+      var url = 'http://open.spotify.com/user/hitradioö63';
+      var obj = parse(url);
+      assert('user', obj.type);
+      assert('hitradioö3', obj.user);
     });
     it('should parse "user" URLs', function () {
       var url = 'http://open.spotify.com/user/tootallnate';
@@ -122,7 +134,19 @@ describe('parse()', function () {
       var uri = 'spotify:search:artist:h%C3%A4xor';
       var obj = parse(uri);
       assert('search' == obj.type);
-      assert('artist:hÃ¤xor' == obj.query);
+      assert('artist:häxor' == obj.query);
+    });
+    it('should parse "encoded special characters" in URIs', function () {
+      var url = 'spotify:user:hitradio%c3%b63';
+      var obj = parse(url);
+      assert('user', obj.type);
+      assert('hitradioö3', obj.user);
+    });
+    it('should parse "special characters" in URIs', function () {
+      var url = 'spotify:user:hitradioö63';
+      var obj = parse(url);
+      assert('user', obj.type);
+      assert('hitradioö3', obj.user);
     });
     it('should parse combined "search"', function () {
       var uri = 'spotify:search:genre:hip-hop+year:1980-1989';
