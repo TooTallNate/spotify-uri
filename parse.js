@@ -45,6 +45,9 @@ function parse (uri) {
 
 function parseParts (parts, obj) {
   var len = parts.length;
+  if('embed' == parts[1]) {
+    parts = parts.slice(1, len);
+  }
   if ('search' == parts[1]) {
     obj.type = 'search';
     obj.query = decode(parts.slice(2).join(':'));
