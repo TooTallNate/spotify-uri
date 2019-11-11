@@ -79,6 +79,15 @@ describe('parse()', function () {
     });
   });
 
+  describe('"open.spotify.com/embed" URLs (e.g. twitter embed)', function () {
+    it('should parse "track" URLs', function () {
+      var url = 'https://open.spotify.com/embed/track/5oscsdDQ0NpjsTgpG4bI8S';
+      var obj = parse(url);
+      assert('track' == obj.type);
+      assert('5oscsdDQ0NpjsTgpG4bI8S' == obj.id);
+    });
+  });
+
   describe('Spotify URIs', function () {
     it('should parse "ablum" URIs', function () {
       var uri = 'spotify:album:4m2880jivSbbyEGAKfITCa';
