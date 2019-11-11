@@ -1,10 +1,7 @@
 spotify-uri
 ===========
 ### Parse the various Spotify URI formats into Objects and back
-
-[![Sauce Test Status](https://saucelabs.com/browser-matrix/spotify-uri.svg)](https://saucelabs.com/u/spotify-uri)
-
-[![Build Status](https://travis-ci.org/TooTallNate/spotify-uri.svg?branch=master)](https://travis-ci.org/TooTallNate/spotify-uri)
+[![Build Status](https://github.com/TooTallNate/spotify-uri/workflows/Node%20CI/badge.svg)](https://github.com/TooTallNate/spotify-uri/actions?workflow=Node+CI)
 
 Spotify URIs get passed around in a variety of flavors. This module parses them
 into a JavaScript object so you can work with the further. You can also convert
