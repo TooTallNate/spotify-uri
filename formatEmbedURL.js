@@ -1,4 +1,3 @@
-
 /**
  * Module dependencies.
  */
@@ -20,6 +19,6 @@ module.exports = formatEmbedURI;
  * @api public
  */
 
-function formatEmbedURI (parsed) {
-  return 'https://embed.spotify.com/?uri=' + formatURI(parsed);
+function formatEmbedURI(parsed) {
+	return 'https://embed.spotify.com/?uri=' + formatURI(parsed);
 }

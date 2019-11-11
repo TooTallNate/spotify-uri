@@ -1,4 +1,3 @@
-
 /**
  * Module dependencies.
  */
@@ -20,28 +19,35 @@ module.exports = formatOpenURL;
  * @api public
  */
 
-function formatOpenURL (parsed, base) {
-  if ('string' == typeof parsed) parsed = parse(parsed);
-  if ('string' != typeof base) base = 'http://open.spotify.com';
-  if (parsed.starred) {
-    // user's "starred" playlist
-    return base + '/user/' + encode(parsed.user) + '/starred';
-  } else if ('playlist' == parsed.type) {
-    // user "playlist"
-    return base + '/user/' + encode(parsed.user) + '/playlist/' + parsed.id;
-  } else if ('local' == parsed.type) {
-    // "local" file
-    return base + '/local/' + encode(parsed.artist) +
-                        '/' + encode(parsed.album) +
-                        '/' + encode(parsed.track) +
-                        '/' + parsed.seconds;
-  } else if ('search' == parsed.type) {
-    // "search" query
-    return base + '/search/' + encode(parsed.query);
-  } else {
-    // artist, album, track
-    return base + '/' + parsed.type + '/' + parsed.id;
-  }
+function formatOpenURL(parsed, base) {
+	if ('string' == typeof parsed) parsed = parse(parsed);
+	if ('string' != typeof base) base = 'http://open.spotify.com';
+	if (parsed.starred) {
+		// user's "starred" playlist
+		return base + '/user/' + encode(parsed.user) + '/starred';
+	} else if ('playlist' == parsed.type) {
+		// user "playlist"
+		return base + '/user/' + encode(parsed.user) + '/playlist/' + parsed.id;
+	} else if ('local' == parsed.type) {
+		// "local" file
+		return (
+			base +
+			'/local/' +
+			encode(parsed.artist) +
+			'/' +
+			encode(parsed.album) +
+			'/' +
+			encode(parsed.track) +
+			'/' +
+			parsed.seconds
+		);
+	} else if ('search' == parsed.type) {
+		// "search" query
+		return base + '/search/' + encode(parsed.query);
+	} else {
+		// artist, album, track
+		return base + '/' + parsed.type + '/' + parsed.id;
+	}
 }
 
 /**
@@ -51,6 +57,6 @@ function formatOpenURL (parsed, base) {
  * @api private
  */
 
-function encode (str) {
-  return escape(str.replace(/ /g, '+'));
+function encode(str) {
+	return escape(str.replace(/ /g, '+'));
 }

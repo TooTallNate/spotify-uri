@@ -1,4 +1,3 @@
-
 /**
  * Module dependencies.
  */
@@ -20,6 +19,6 @@ module.exports = formatPlayURL;
  * @api public
  */
 
-function formatPlayURL (parsed) {
-  return formatOpenURL(parsed, 'https://play.spotify.com');
+function formatPlayURL(parsed) {
+	return formatOpenURL(parsed, 'https://play.spotify.com');
 }
