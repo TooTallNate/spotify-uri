@@ -4,8 +4,9 @@ spotify-uri
 [![Build Status](https://github.com/TooTallNate/spotify-uri/workflows/Node%20CI/badge.svg)](https://github.com/TooTallNate/spotify-uri/actions?workflow=Node+CI)
 
 Spotify URIs get passed around in a variety of flavors. This module parses them
-into a JavaScript object so you can work with the further. You can also convert
+into a JavaScript object so you can work with them further. You can also convert
 them back into Spotify URIs or HTTP URLs.
+
 
 Installation
 ------------
@@ -16,16 +17,9 @@ Install for node.js or browserify using `npm`:
 $ npm install spotify-uri
 ```
 
-Install for component(1) using `component`:
-
-``` bash
-$ component install TooTallNate/spotify-uri
-```
-
 
 Example
 -------
-
 
 ``` javascript
 var spotifyUri = require('spotify-uri');
@@ -65,7 +59,8 @@ console.log(uri);
 // 'https://embed.spotify.com/?uri=spotify:track:1pKYYY0dkg23sQQXi0Q5zN'
 ```
 
-See the [test cases][tests] for some more examples of Spotify URIs.
+See the [test cases](./test) for some more examples of Spotify URIs.
+
 
 ## API
 
@@ -119,8 +114,7 @@ console.log(uri);
 // 'https://embed.spotify.com/?uri=spotify:track:6JmI8SpUHoQ4yveHLjTrko'
 ```
 
+
 ## License
 
 MIT
-
-[tests]: http://tootallnate.github.io/spotify-uri/
