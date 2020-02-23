@@ -18,13 +18,20 @@ describe('parse()', function() {
 			assert('track' == obj.type);
 			assert('10M2REwwztVxgr0szw7UwD' == obj.id);
 		});
-		it('should parse "playlist" URLs', function() {
+		it('should parse user "playlist" URLs', function() {
 			var url =
 				'http://open.spotify.com/user/tootallnate/playlist/0Lt5S4hGarhtZmtz7BNTeX';
 			var obj = parse(url);
 			assert('playlist' == obj.type);
 			assert('tootallnate' == obj.user);
 			assert('0Lt5S4hGarhtZmtz7BNTeX' == obj.id);
+		});
+		it('should parse public "playlist" URLs', function() {
+			var url =
+				'https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M';
+			var obj = parse(url);
+			assert('playlist' == obj.type);
+			assert('37i9dQZF1DXcBWIGoYBM5M' == obj.id);
 		});
 		it('should parse "local" URLs', function() {
 			var url =
@@ -110,13 +117,20 @@ describe('parse()', function() {
 			assert('track' == obj.type);
 			assert('5CMjjywI0eZMixPeqNd75R' == obj.id);
 		});
-		it('should parse "playlist" URIs', function() {
+		it('should parse user "playlist" URIs', function() {
 			var uri =
 				'spotify:user:daftpunkofficial:playlist:6jP6EcvAwqNksccDkIe6hX';
 			var obj = parse(uri);
 			assert('playlist' == obj.type);
 			assert('daftpunkofficial' == obj.user);
 			assert('6jP6EcvAwqNksccDkIe6hX' == obj.id);
+		});
+		it('should parse public "playlist" URIs', function() {
+			var uri =
+				'spotify:playlist:37i9dQZF1DX4JAvHpjipBk';
+			var obj = parse(uri);
+			assert('playlist' == obj.type);
+			assert('37i9dQZF1DX4JAvHpjipBk' == obj.id);
 		});
 		it('should parse "local" track URIs', function() {
 			var uri =
@@ -193,10 +207,17 @@ describe('formatURI()', function() {
 		var actual = formatURI(obj);
 		assert(actual == expected);
 	});
-	it('should parse "playlist" URIs', function() {
+	it('should parse user "playlist" URIs', function() {
 		var url = 'spotify:user:syknyk:playlist:0Idyatn0m08Y48tiOovNd9';
 		var obj = parse(url);
 		var expected = 'spotify:user:syknyk:playlist:0Idyatn0m08Y48tiOovNd9';
+		var actual = formatURI(obj);
+		assert(actual == expected);
+	});
+	it('should parse public "playlist" URIs', function() {
+		var url = 'spotify:playlist:37i9dQZF1DWUa8ZRTfalHk';
+		var obj = parse(url);
+		var expected = 'spotify:playlist:37i9dQZF1DWUa8ZRTfalHk';
 		var actual = formatURI(obj);
 		assert(actual == expected);
 	});
@@ -233,12 +254,21 @@ describe('formatOpenURL()', function() {
 		var actual = formatOpenURL(obj);
 		assert(actual == expected);
 	});
-	it('should format "playlist" URIs', function() {
+	it('should format user "playlist" URIs', function() {
 		var uri =
 			'spotify:user:daftpunkofficial:playlist:6jP6EcvAwqNksccDkIe6hX';
 		var obj = parse(uri);
 		var expected =
 			'http://open.spotify.com/user/daftpunkofficial/playlist/6jP6EcvAwqNksccDkIe6hX';
+		var actual = formatOpenURL(obj);
+		assert(actual == expected);
+	});
+	it('should format public "playlist" URIs', function() {
+		var uri =
+			'spotify:playlist:37i9dQZF1DXaPCIWxzZwR1';
+		var obj = parse(uri);
+		var expected =
+			'http://open.spotify.com/playlist/37i9dQZF1DXaPCIWxzZwR1';
 		var actual = formatOpenURL(obj);
 		assert(actual == expected);
 	});
