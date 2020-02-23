@@ -25,7 +25,7 @@ function formatURI(parsed) {
 		return 'spotify:user:' + encode(parsed.user) + ':starred';
 	} else if ('playlist' == parsed.type) {
 		// user or non-user "playlist"
-		return 'spotify:' + (parsed.user ? 'user:' + encode(parsed.user) : '') + 'playlist:' + parsed.id;
+		return 'spotify' + (parsed.user ? ':user:' + encode(parsed.user) : '') + ':playlist:' + parsed.id;
 	} else if ('local' == parsed.type) {
 		// "local" file
 		return (
