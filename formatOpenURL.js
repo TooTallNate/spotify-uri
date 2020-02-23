@@ -27,7 +27,7 @@ function formatOpenURL(parsed, base) {
 		return base + '/user/' + encode(parsed.user) + '/starred';
 	} else if ('playlist' == parsed.type) {
 		// user "playlist"
-		return base + '/user/' + encode(parsed.user) + '/playlist/' + parsed.id;
+		return base + (parsed.user ? '/user/' + encode(parsed.user) : '') + '/playlist/' + parsed.id;
 	} else if ('local' == parsed.type) {
 		// "local" file
 		return (

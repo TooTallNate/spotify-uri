@@ -2,3 +2,5 @@
 /build
 /yarn.lock
 /components
+
+package-lock.json
