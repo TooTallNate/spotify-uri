@@ -37,6 +37,6 @@ export default class Playlist extends SpotifyUri {
 			}
 			return `/user/${encode(this.user)}/playlist/${encode(this.id)}`;
 		}
-		return '/playlist/' + encode(this.id);
+		return `/playlist/${encode(this.id)}`;
 	}
 }

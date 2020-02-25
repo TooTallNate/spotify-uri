@@ -22,7 +22,7 @@ export default function parse(input: string | SpotifyUri): ParsedSpotifyUri {
 	const uri = SpotifyUri.is(input) ? input.uri : input;
 	const { protocol, hostname, pathname = '/', query = '' } = url.parse(uri);
 
-	if ('embed.spotify.com' === hostname) {
+	if (hostname === 'embed.spotify.com') {
 		const parsedQs = qs.parse(query || '');
 		if (typeof parsedQs.uri !== 'string') {
 			throw new Error('fo');
@@ -30,7 +30,7 @@ export default function parse(input: string | SpotifyUri): ParsedSpotifyUri {
 		return parse(parsedQs.uri);
 	}
 
-	if ('spotify:' === protocol) {
+	if (protocol === 'spotify:') {
 		const parts = uri.split(':');
 		return parseParts(uri, parts);
 	}
@@ -46,12 +46,13 @@ export default function parse(input: string | SpotifyUri): ParsedSpotifyUri {
 
 function parseParts(uri: string, parts: string[]): ParsedSpotifyUri {
 	const len = parts.length;
-	if ('embed' == parts[1]) {
-		parts = parts.slice(1, len);
+	if (parts[1] === 'embed') {
+		parts = parts.slice(1);
 	}
-	if ('search' == parts[1]) {
+	if (parts[1] === 'search') {
 		return new Search(uri, decode(parts.slice(2).join(':')));
-	} else if (len >= 3 && 'local' == parts[1]) {
+	}
+	if (len >= 3 && parts[1] === 'local') {
 		return new Local(
 			uri,
 			decode(parts[2]),
@@ -59,19 +60,26 @@ function parseParts(uri: string, parts: string[]): ParsedSpotifyUri {
 			decode(parts[4]),
 			+parts[5]
 		);
-	} else if (len == 3 && 'playlist' == parts[1]) {
+	}
+	if (len === 3 && parts[1] === 'playlist') {
 		return new Playlist(uri, decode(parts[2]));
-	} else if (len == 3 && 'user' == parts[1]) {
+	}
+	if (len === 3 && parts[1] === 'user') {
 		return new User(uri, decode(parts[2]));
-	} else if (len >= 5) {
+	}
+	if (len >= 5) {
 		return new Playlist(uri, decode(parts[4]), decode(parts[2]));
-	} else if (len >= 4 && 'starred' == parts[3]) {
+	}
+	if (len >= 4 && parts[3] === 'starred') {
 		return new Playlist(uri, 'starred', decode(parts[2]));
-	} else if (parts[1] === 'artist') {
+	}
+	if (parts[1] === 'artist') {
 		return new Artist(uri, parts[2]);
-	} else if (parts[1] === 'album') {
+	}
+	if (parts[1] === 'album') {
 		return new Album(uri, parts[2]);
-	} else if (parts[1] === 'track') {
+	}
+	if (parts[1] === 'track') {
 		return new Track(uri, parts[2]);
 	}
 	throw new TypeError(`Could not determine type for: ${uri}`);

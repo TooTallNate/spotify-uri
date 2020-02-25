@@ -19,6 +19,6 @@ export default class Search extends SpotifyUri {
 	}
 
 	public toURL(): string {
-		return '/search/' + encode(this.query);
+		return `/search/${encode(this.query)}`;
 	}
 }

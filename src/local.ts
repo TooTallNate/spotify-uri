@@ -27,28 +27,14 @@ export default class Local extends SpotifyUri {
 	}
 
 	public toURI(): string {
-		return (
-			'spotify:local:' +
-			encode(this.artist) +
-			':' +
-			encode(this.album) +
-			':' +
-			encode(this.track) +
-			':' +
-			this.seconds
-		);
+		return `spotify:local:${encode(this.artist)}:${encode(
+			this.album
+		)}:${encode(this.track)}:${this.seconds}`;
 	}
 
 	public toURL(): string {
-		return (
-			'/local/' +
-			encode(this.artist) +
-			'/' +
-			encode(this.album) +
-			'/' +
-			encode(this.track) +
-			'/' +
-			this.seconds
-		);
+		return `/local/${encode(this.artist)}/${encode(this.album)}/${encode(
+			this.track
+		)}/${this.seconds}`;
 	}
 }
