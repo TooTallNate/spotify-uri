@@ -1,6 +1,4 @@
+/dist
 /node_modules
-/build
 /yarn.lock
-/components
-
-package-lock.json
+/package-lock.json
