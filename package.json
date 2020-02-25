@@ -1,6 +1,6 @@
 {
   "name": "spotify-uri",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Parse the various Spotify URI formats into Objects and back",
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
