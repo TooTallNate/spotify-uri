@@ -1,4 +1,4 @@
-export default abstract class SpotifyUriBase {
+export default abstract class SpotifyUri {
 	public uri: string;
 	public abstract toURL(): string;
 	public abstract toURI(): string;
@@ -7,7 +7,7 @@ export default abstract class SpotifyUriBase {
 		this.uri = uri;
 	}
 
-	public static is(v: any): v is SpotifyUriBase {
+	public static is(v: any): v is SpotifyUri {
 		return Boolean(v && typeof v.uri === 'string');
 	}
 

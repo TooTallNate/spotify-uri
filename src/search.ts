@@ -1,7 +1,7 @@
 import { encode } from './util';
-import SpotifyUriBase from './spotify-uri-base';
+import SpotifyUri from './spotify-uri-base';
 
-export default class Search extends SpotifyUriBase {
+export default class Search extends SpotifyUri {
 	public type = 'search';
 	public query: string;
 

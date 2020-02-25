@@ -6,15 +6,15 @@ import _Artist from './artist';
 import _Album from './album';
 import _Track from './track';
 import _User from './user';
-import _SpotifyUriBase from './spotify-uri-base';
+import _SpotifyUri from './spotify-uri-base';
 
-function parseSpotifyUri(uri: string) {
+function parseSpotifyUri(uri: string | _SpotifyUri) {
 	return _parse(uri);
 }
 
 namespace parseSpotifyUri {
-	export type SpotifyUriBase = _SpotifyUriBase;
-	export const SpotifyUriBase = _SpotifyUriBase;
+	export type SpotifyUri = _SpotifyUri;
+	export const SpotifyUri = _SpotifyUri;
 
 	export type Local = _Local;
 	export const Local = _Local;
@@ -48,26 +48,26 @@ namespace parseSpotifyUri {
 
 	export const parse = _parse;
 
-	export function formatURI(input: string | SpotifyUriBase): string {
-		const uri: SpotifyUriBase =
+	export function formatURI(input: string | SpotifyUri): string {
+		const uri: SpotifyUri =
 			typeof input === 'string' ? parse(input) : input;
 		return uri.toURI();
 	}
 
-	export function formatEmbedURL(input: string | SpotifyUriBase): string {
-		const uri: SpotifyUriBase =
+	export function formatEmbedURL(input: string | SpotifyUri): string {
+		const uri: SpotifyUri =
 			typeof input === 'string' ? parse(input) : input;
 		return uri.toEmbedURL();
 	}
 
-	export function formatOpenURL(input: string | SpotifyUriBase): string {
-		const uri: SpotifyUriBase =
+	export function formatOpenURL(input: string | SpotifyUri): string {
+		const uri: SpotifyUri =
 			typeof input === 'string' ? parse(input) : input;
 		return uri.toOpenURL();
 	}
 
-	export function formatPlayURL(input: string | SpotifyUriBase): string {
-		const uri: SpotifyUriBase =
+	export function formatPlayURL(input: string | SpotifyUri): string {
+		const uri: SpotifyUri =
 			typeof input === 'string' ? parse(input) : input;
 		return uri.toPlayURL();
 	}

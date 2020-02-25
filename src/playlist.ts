@@ -1,7 +1,7 @@
 import { encode } from './util';
-import SpotifyUriBase from './spotify-uri-base';
+import SpotifyUri from './spotify-uri-base';
 
-export default class Playlist extends SpotifyUriBase {
+export default class Playlist extends SpotifyUri {
 	public type = 'playlist';
 	public id: string;
 	public user?: string;
@@ -23,7 +23,9 @@ export default class Playlist extends SpotifyUriBase {
 			if (this.id === 'starred') {
 				return `spotify:user:${encode(this.user)}:${encode(this.id)}`;
 			}
-			return `spotify:user:${encode(this.user)}:playlist:${encode(this.id)}`;
+			return `spotify:user:${encode(this.user)}:playlist:${encode(
+				this.id
+			)}`;
 		}
 		return `spotify:playlist:${encode(this.id)}`;
 	}

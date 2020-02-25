@@ -121,8 +121,7 @@ describe('parse()', function() {
 			assert('6jP6EcvAwqNksccDkIe6hX' == obj.id);
 		});
 		it('should parse public "playlist" URIs', function() {
-			let uri =
-				'spotify:playlist:37i9dQZF1DX4JAvHpjipBk';
+			let uri = 'spotify:playlist:37i9dQZF1DX4JAvHpjipBk';
 			let obj = parse(uri);
 			assert('playlist' == obj.type);
 			assert('37i9dQZF1DX4JAvHpjipBk' == obj.id);
@@ -186,14 +185,14 @@ describe('formatURI()', function() {
 		let obj = parse(url);
 		let expected = 'spotify:artist:1gR0gsQYfi6joyO1dlp76N';
 		let actual = formatURI(obj);
-		assert(actual == expected);
+		assert.equal(actual, expected);
 	});
 	it('should format "search" query URIs', function() {
 		let url = 'spotify:search:artist%3aDaft+Punk';
 		let obj = parse(url);
 		let expected = 'spotify:search:artist%3ADaft+Punk';
 		let actual = formatURI(obj);
-		assert(actual == expected);
+		assert.equal(actual, expected);
 	});
 	it('should format "starred" playlist open URLs', function() {
 		let url = 'http://open.spotify.com/user/syknyk/starred';
@@ -207,14 +206,14 @@ describe('formatURI()', function() {
 		let obj = parse(url);
 		let expected = 'spotify:user:syknyk:playlist:0Idyatn0m08Y48tiOovNd9';
 		let actual = formatURI(obj);
-		assert(actual == expected);
+		assert.equal(actual, expected);
 	});
 	it('should parse public "playlist" URIs', function() {
 		let url = 'spotify:playlist:37i9dQZF1DWUa8ZRTfalHk';
 		let obj = parse(url);
 		let expected = 'spotify:playlist:37i9dQZF1DWUa8ZRTfalHk';
 		let actual = formatURI(obj);
-		assert(actual == expected);
+		assert.equal(actual, expected);
 	});
 	it('should parse "local" file URIs', function() {
 		let url =
@@ -223,7 +222,7 @@ describe('formatURI()', function() {
 		let expected =
 			'spotify:local:Flite%2C+Medium+Minus:YouTube:Find+What+You+Love:399';
 		let actual = formatURI(obj);
-		assert(actual == expected);
+		assert.equal(actual, expected);
 	});
 });
 
@@ -233,21 +232,21 @@ describe('formatOpenURL()', function() {
 		let obj = parse(uri);
 		let expected = 'http://open.spotify.com/artist/1gR0gsQYfi6joyO1dlp76N';
 		let actual = formatOpenURL(obj);
-		assert(actual == expected);
+		assert.equal(actual, expected);
 	});
 	it('should format "album" URIs', function() {
 		let uri = 'spotify:album:7CjakTZxwIF8oixONe6Bpb';
 		let obj = parse(uri);
 		let expected = 'http://open.spotify.com/album/7CjakTZxwIF8oixONe6Bpb';
 		let actual = formatOpenURL(obj);
-		assert(actual == expected);
+		assert.equal(actual, expected);
 	});
 	it('should format "track" URIs', function() {
 		let uri = 'spotify:track:4XfokvilxHAOQXfnWD9p0Q';
 		let obj = parse(uri);
 		let expected = 'http://open.spotify.com/track/4XfokvilxHAOQXfnWD9p0Q';
 		let actual = formatOpenURL(obj);
-		assert(actual == expected);
+		assert.equal(actual, expected);
 	});
 	it('should format user "playlist" URIs', function() {
 		let uri =
@@ -256,16 +255,15 @@ describe('formatOpenURL()', function() {
 		let expected =
 			'http://open.spotify.com/user/daftpunkofficial/playlist/6jP6EcvAwqNksccDkIe6hX';
 		let actual = formatOpenURL(obj);
-		assert(actual == expected);
+		assert.equal(actual, expected);
 	});
 	it('should format public "playlist" URIs', function() {
-		let uri =
-			'spotify:playlist:37i9dQZF1DXaPCIWxzZwR1';
+		let uri = 'spotify:playlist:37i9dQZF1DXaPCIWxzZwR1';
 		let obj = parse(uri);
 		let expected =
 			'http://open.spotify.com/playlist/37i9dQZF1DXaPCIWxzZwR1';
 		let actual = formatOpenURL(obj);
-		assert(actual == expected);
+		assert.equal(actual, expected);
 	});
 	it('should format "starred" playlist URIs', function() {
 		let uri = 'spotify:user:tootallnate:starred';
@@ -281,21 +279,21 @@ describe('formatOpenURL()', function() {
 		let expected =
 			'http://open.spotify.com/local/Yasunori+Mitsuda/Chrono+Trigger+OST+Disc+2/Ayla%27s+Theme/84';
 		let actual = formatOpenURL(obj);
-		assert(actual == expected);
+		assert.equal(actual, expected);
 	});
 	it('should format "local" URIs 2', function() {
 		let uri = 'spotify:local:::a:6';
 		let obj = parse(uri);
 		let expected = 'http://open.spotify.com/local///a/6';
 		let actual = formatOpenURL(obj);
-		assert(actual == expected);
+		assert.equal(actual, expected);
 	});
 	it('should format "search" URIs', function() {
 		let uri = 'spotify:search:artist%3aDaft+Punk';
 		let obj = parse(uri);
 		let expected = 'http://open.spotify.com/search/artist%3ADaft+Punk';
 		let actual = formatOpenURL(obj);
-		assert(actual == expected);
+		assert.equal(actual, expected);
 	});
 });
 
@@ -305,7 +303,7 @@ describe('formatPlayURL()', function() {
 		let obj = parse(uri);
 		let expected = 'https://play.spotify.com/track/4XfokvilxHAOQXfnWD9p0Q';
 		let actual = formatPlayURL(obj);
-		assert(actual == expected);
+		assert.equal(actual, expected);
 	});
 });
 
@@ -316,6 +314,6 @@ describe('formatEmbedURL()', function() {
 		let expected =
 			'https://embed.spotify.com/?uri=spotify:track:4XfokvilxHAOQXfnWD9p0Q';
 		let actual = formatEmbedURL(obj);
-		assert(actual == expected);
+		assert.equal(actual, expected);
 	});
 });

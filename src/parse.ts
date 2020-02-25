@@ -7,7 +7,7 @@ import Artist from './artist';
 import Album from './album';
 import Track from './track';
 import User from './user';
-import SpotifyUriBase from './spotify-uri-base';
+import SpotifyUri from './spotify-uri-base';
 import { decode } from './util';
 import { ParsedSpotifyUri } from '.';
 
@@ -18,10 +18,8 @@ import { ParsedSpotifyUri } from '.';
  * @return {Object} parsed Spotify uri object
  * @api public
  */
-export default function parse(
-	input: string | SpotifyUriBase
-): ParsedSpotifyUri {
-	const uri = SpotifyUriBase.is(input) ? input.uri : input;
+export default function parse(input: string | SpotifyUri): ParsedSpotifyUri {
+	const uri = SpotifyUri.is(input) ? input.uri : input;
 	const { protocol, hostname, pathname = '/', query = '' } = url.parse(uri);
 
 	if ('embed.spotify.com' === hostname) {
