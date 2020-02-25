@@ -6,7 +6,7 @@ import _Artist from './artist';
 import _Album from './album';
 import _Track from './track';
 import _User from './user';
-import _SpotifyUri from './spotify-uri-base';
+import _SpotifyUri from './spotify-uri';
 
 function parseSpotifyUri(uri: string | _SpotifyUri) {
 	return _parse(uri);

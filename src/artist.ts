@@ -1,5 +1,5 @@
 import { encode } from './util';
-import SpotifyUri from './spotify-uri-base';
+import SpotifyUri from './spotify-uri';
 
 export default class Artist extends SpotifyUri {
 	public type = 'artist';

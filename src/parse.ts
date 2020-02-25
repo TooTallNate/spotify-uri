@@ -7,7 +7,7 @@ import Artist from './artist';
 import Album from './album';
 import Track from './track';
 import User from './user';
-import SpotifyUri from './spotify-uri-base';
+import SpotifyUri from './spotify-uri';
 import { decode } from './util';
 import { ParsedSpotifyUri } from '.';
 
