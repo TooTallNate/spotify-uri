@@ -89,7 +89,7 @@ Formats a parsed URI Object back into a Spotify HTTP "open" URL. For example:
 var parsed = spotifyUri.parse('spotify:track:3c1zC1Ma3987kQcHQfcG0Q');
 var uri = spotifyUri.formatOpenURL(parsed);
 console.log(uri);
-// 'https://play.spotify.com/track/4Jgp57InfWE4MxJLfheNVz'
+// 'http://open.spotify.com/track/3c1zC1Ma3987kQcHQfcG0Q'
 ```
 
 ### .formatPlayURL(Object parsedUri) → String
