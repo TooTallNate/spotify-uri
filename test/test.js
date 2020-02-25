@@ -25,24 +25,24 @@ describe('parse()', function() {
 			let url =
 				'https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M';
 			let obj = parse(url);
-			assert('playlist' == obj.type);
-			assert('37i9dQZF1DXcBWIGoYBM5M' == obj.id);
+			assert.equal('playlist', obj.type);
+			assert.equal('37i9dQZF1DXcBWIGoYBM5M', obj.id);
 		});
 		it('should parse "local" URLs', function() {
 			let url =
 				'http://open.spotify.com/local/Yasunori+Mitsuda/Chrono+Trigger+OST/A+Shot+of+Crisis/161';
 			let obj = parse(url);
-			assert('local' == obj.type);
-			assert('Yasunori Mitsuda' == obj.artist);
-			assert('Chrono Trigger OST' == obj.album);
-			assert('A Shot of Crisis' == obj.track);
-			assert(161 == obj.seconds);
+			assert.equal('local', obj.type);
+			assert.equal('Yasunori Mitsuda', obj.artist);
+			assert.equal('Chrono Trigger OST', obj.album);
+			assert.equal('A Shot of Crisis', obj.track);
+			assert.equal(161, obj.seconds);
 		});
 		it('should parse "search" URLs', function() {
 			let url = 'http://open.spotify.com/search/artist%3ah%c3%a4xor';
 			let obj = parse(url);
-			assert('search' == obj.type);
-			assert('artist:häxor' == obj.query);
+			assert.equal('search', obj.type);
+			assert.equal('artist:häxor', obj.query);
 		});
 		it('should parse "encoded special characters" in URLs', function() {
 			let url = 'http://open.spotify.com/user/hitradio%c3%b63';
@@ -68,8 +68,8 @@ describe('parse()', function() {
 		it('should parse "track" URLs', function() {
 			let url = 'https://play.spotify.com/track/5W3cjX2J3tjhG8zb6u0qHn';
 			let obj = parse(url);
-			assert('track' == obj.type);
-			assert('5W3cjX2J3tjhG8zb6u0qHn' == obj.id);
+			assert.equal('track', obj.type);
+			assert.equal('5W3cjX2J3tjhG8zb6u0qHn', obj.id);
 		});
 	});
 
@@ -78,8 +78,8 @@ describe('parse()', function() {
 			let url =
 				'https://embed.spotify.com/?uri=spotify:track:5oscsdDQ0NpjsTgpG4bI8S';
 			let obj = parse(url);
-			assert('track' == obj.type);
-			assert('5oscsdDQ0NpjsTgpG4bI8S' == obj.id);
+			assert.equal('track', obj.type);
+			assert.equal('5oscsdDQ0NpjsTgpG4bI8S', obj.id);
 		});
 	});
 
@@ -88,8 +88,8 @@ describe('parse()', function() {
 			let url =
 				'https://open.spotify.com/embed/track/5oscsdDQ0NpjsTgpG4bI8S';
 			let obj = parse(url);
-			assert('track' == obj.type);
-			assert('5oscsdDQ0NpjsTgpG4bI8S' == obj.id);
+			assert.equal('track', obj.type);
+			assert.equal('5oscsdDQ0NpjsTgpG4bI8S', obj.id);
 		});
 	});
 
@@ -97,53 +97,53 @@ describe('parse()', function() {
 		it('should parse "ablum" URIs', function() {
 			let uri = 'spotify:album:4m2880jivSbbyEGAKfITCa';
 			let obj = parse(uri);
-			assert('album' == obj.type);
-			assert('4m2880jivSbbyEGAKfITCa' == obj.id);
+			assert.equal('album', obj.type);
+			assert.equal('4m2880jivSbbyEGAKfITCa', obj.id);
 		});
 		it('should parse "artist" URIs', function() {
 			let uri = 'spotify:artist:4tZwfgrHOc3mvqYlEYSvVi';
 			let obj = parse(uri);
-			assert('artist' == obj.type);
-			assert('4tZwfgrHOc3mvqYlEYSvVi' == obj.id);
+			assert.equal('artist', obj.type);
+			assert.equal('4tZwfgrHOc3mvqYlEYSvVi', obj.id);
 		});
 		it('should parse "track" URIs', function() {
 			let uri = 'spotify:track:5CMjjywI0eZMixPeqNd75R';
 			let obj = parse(uri);
-			assert('track' == obj.type);
-			assert('5CMjjywI0eZMixPeqNd75R' == obj.id);
+			assert.equal('track', obj.type);
+			assert.equal('5CMjjywI0eZMixPeqNd75R', obj.id);
 		});
 		it('should parse user "playlist" URIs', function() {
 			let uri =
 				'spotify:user:daftpunkofficial:playlist:6jP6EcvAwqNksccDkIe6hX';
 			let obj = parse(uri);
-			assert('playlist' == obj.type);
-			assert('daftpunkofficial' == obj.user);
-			assert('6jP6EcvAwqNksccDkIe6hX' == obj.id);
+			assert.equal('playlist', obj.type);
+			assert.equal('daftpunkofficial', obj.user);
+			assert.equal('6jP6EcvAwqNksccDkIe6hX', obj.id);
 		});
 		it('should parse public "playlist" URIs', function() {
 			let uri = 'spotify:playlist:37i9dQZF1DX4JAvHpjipBk';
 			let obj = parse(uri);
-			assert('playlist' == obj.type);
-			assert('37i9dQZF1DX4JAvHpjipBk' == obj.id);
+			assert.equal('playlist', obj.type);
+			assert.equal('37i9dQZF1DX4JAvHpjipBk', obj.id);
 		});
 		it('should parse "local" track URIs', function() {
 			let uri =
 				'spotify:local:Yasunori+Mitsuda:Chrono+Trigger+OST:A+Shot+of+Crisis:161';
 			let obj = parse(uri);
-			assert('local' == obj.type);
-			assert('Yasunori Mitsuda' == obj.artist);
-			assert('Chrono Trigger OST' == obj.album);
-			assert('A Shot of Crisis' == obj.track);
-			assert(161 === obj.seconds);
+			assert.equal('local', obj.type);
+			assert.equal('Yasunori Mitsuda', obj.artist);
+			assert.equal('Chrono Trigger OST', obj.album);
+			assert.equal('A Shot of Crisis', obj.track);
+			assert.equal(161, obj.seconds);
 		});
 		it('should parse "local" track URIs 2', function() {
 			let uri = 'spotify:local:::a:6';
 			let obj = parse(uri);
-			assert('local' == obj.type);
-			assert('' === obj.artist);
-			assert('' === obj.album);
-			assert('a' === obj.track);
-			assert(6 === obj.seconds);
+			assert.equal('local', obj.type);
+			assert.equal('', obj.artist);
+			assert.equal('', obj.album);
+			assert.equal('a', obj.track);
+			assert.equal(6, obj.seconds);
 		});
 		it('should parse "starred" playlist URIs', function() {
 			let uri = 'spotify:user:tootallnate:starred';
@@ -155,26 +155,26 @@ describe('parse()', function() {
 		it('should parse "search" URIs', function() {
 			let uri = 'spotify:search:artist:h%C3%A4xor';
 			let obj = parse(uri);
-			assert('search' == obj.type);
-			assert('artist:häxor' == obj.query);
+			assert.equal('search', obj.type);
+			assert.equal('artist:häxor', obj.query);
 		});
 		it('should parse "encoded special characters" in URIs', function() {
 			let url = 'spotify:user:hitradio%c3%b63';
 			let obj = parse(url);
-			assert('user', obj.type);
-			assert('hitradioö3', obj.user);
+			assert.equal('user', obj.type);
+			assert.equal('hitradioö3', obj.user);
 		});
 		it('should parse "special characters" in URIs', function() {
-			let url = 'spotify:user:hitradioö63';
+			let url = 'spotify:user:hitradioö3';
 			let obj = parse(url);
-			assert('user', obj.type);
-			assert('hitradioö3', obj.user);
+			assert.equal('user', obj.type);
+			assert.equal('hitradioö3', obj.user);
 		});
 		it('should parse combined "search"', function() {
 			let uri = 'spotify:search:genre:hip-hop+year:1980-1989';
 			let obj = parse(uri);
-			assert('search' == obj.type);
-			assert('genre:hip-hop year:1980-1989' == obj.query);
+			assert.equal('search', obj.type);
+			assert.equal('genre:hip-hop year:1980-1989', obj.query);
 		});
 	});
 });
