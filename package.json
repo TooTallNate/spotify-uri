@@ -1,37 +1,56 @@
 {
   "name": "spotify-uri",
-  "version": "2.0.0",
   "description": "Parse the various Spotify URI formats into Objects and back",
+  "homepage": "https://github.com/TooTallNate/spotify-uri#readme",
+  "version": "2.0.0",
   "main": "./dist/index.js",
-  "typings": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "prebuild": "rimraf dist",
-    "build": "tsc",
-    "test": "mocha",
-    "test-lint": "eslint src --ext .js,.ts",
-    "prepublishOnly": "npm run build"
+  "author": {
+    "email": "nathan@tootallnate.net",
+    "name": "Nathan Rajlich",
+    "url": "http://n8.io/"
   },
+  "contributors": [
+    {
+      "name": "Nathan Rajlich",
+      "email": "nathan@tootallnate.net"
+    },
+    {
+      "name": "Stefan Duberg",
+      "email": "stefanduberg@me.com"
+    },
+    {
+      "name": "Karl Sander",
+      "email": "kall@kall.ws"
+    },
+    {
+      "name": "Kiko Beats",
+      "email": "josefrancisco.verdu@gmail.com"
+    },
+    {
+      "name": "Miraculous Owonubi",
+      "email": "omiraculous@gmail.com"
+    },
+    {
+      "name": "Shem Magnezi",
+      "email": "smagnezi8@gmail.com"
+    }
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/TooTallNate/spotify-uri.git"
   },
-  "keywords": [
-    "spotify",
-    "uri",
-    "link",
-    "http",
-    "url",
-    "parse",
-    "object"
-  ],
-  "author": "Nathan Rajlich <nathan@tootallnate.net> (http://n8.io/)",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/TooTallNate/spotify-uri/issues"
   },
+  "keywords": [
+    "http",
+    "link",
+    "object",
+    "parse",
+    "spotify",
+    "uri",
+    "url"
+  ],
   "devDependencies": {
     "@types/node": "^12.12.11",
     "@typescript-eslint/eslint-plugin": "1.6.0",
@@ -49,5 +68,17 @@
   },
   "engines": {
     "node": ">= 6"
-  }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prebuild": "rimraf dist",
+    "prepublishOnly": "npm run build",
+    "test": "mocha",
+    "test-lint": "eslint src --ext .js,.ts"
+  },
+  "license": "MIT",
+  "typings": "./dist/index.d.ts"
 }
