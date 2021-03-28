@@ -7,6 +7,7 @@ import Artist from './artist';
 import Album from './album';
 import Track from './track';
 import Episode from './episode';
+import Show from './show';
 import User from './user';
 import SpotifyUri from './spotify-uri';
 import { decode } from './util';
@@ -85,6 +86,9 @@ function parseParts(uri: string, parts: string[]): ParsedSpotifyUri {
 	}
 	if (parts[1] === 'episode') {
 		return new Episode(uri, parts[2]);
+	}
+	if (parts[1] === 'show') {
+		return new Show(uri, parts[2]);
 	}
 	throw new TypeError(`Could not determine type for: ${uri}`);
 }
