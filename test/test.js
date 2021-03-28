@@ -19,6 +19,12 @@ describe('parse()', function() {
 			assert.equal('episode', obj.type);
 			assert.equal('64TORH3xleuD1wcnFsrH1E', obj.id);
 		});
+		it('should parse "show" URLs', function () {
+			let url = 'https://open.spotify.com/show/6uxKcBftLv1aOWoNL7UzTl'
+			let obj = parse(url)
+			assert.equal('show', obj.type)
+			assert.equal('6uxKcBftLv1aOWoNL7UzTl', obj.id)
+		});
 		it('should parse user "playlist" URLs', function() {
 			let url =
 				'http://open.spotify.com/user/tootallnate/playlist/0Lt5S4hGarhtZmtz7BNTeX';
@@ -123,6 +129,12 @@ describe('parse()', function() {
 			let obj = parse(uri);
 			assert.equal('episode', obj.type);
 			assert.equal('64TORH3xleuD1wcnFsrH1E', obj.id);
+		});
+		it('should parse "show" URIs', function () {
+			let uri = 'spotify:show:6uxKcBftLv1aOWoNL7UzTl'
+			let obj = parse(uri)
+			assert.equal('show', obj.type)
+			assert.equal('6uxKcBftLv1aOWoNL7UzTl', obj.id)
 		});
 		it('should parse user "playlist" URIs', function() {
 			let uri =
@@ -266,6 +278,13 @@ describe('formatOpenURL()', function() {
 		let expected = 'http://open.spotify.com/episode/64TORH3xleuD1wcnFsrH1E';
 		let actual = formatOpenURL(obj);
 		assert.equal(actual, expected);
+	});
+	it('should format "show" URIs', function () {
+		let uri = 'spotify:show:6uxKcBftLv1aOWoNL7UzTl'
+		let obj = parse(uri)
+		let expected = 'http://open.spotify.com/show/6uxKcBftLv1aOWoNL7UzTl'
+		let actual = formatOpenURL(obj)
+		assert.equal(actual, expected)
 	});
 	it('should format user "playlist" URIs', function() {
 		let uri =
