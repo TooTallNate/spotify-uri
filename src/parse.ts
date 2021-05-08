@@ -90,5 +90,5 @@ function parseParts(uri: string, parts: string[]): ParsedSpotifyUri {
 	if (parts[1] === 'show') {
 		return new Show(uri, parts[2]);
 	}
-	throw new TypeError(`Could not determine type for: ${uri}`);
+	return null;
 }
