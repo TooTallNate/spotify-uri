@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.1](https://github.com/TooTallNate/spotify-uri/compare/v3.0.0...v3.0.1) (2022-04-07)
+
+
+### Bug Fixes
+
+* add main & module fields ([24b5f80](https://github.com/TooTallNate/spotify-uri/commit/24b5f80b91d8b0b83ea412eb22bdaafd1096d60d))
+
 ## [3.0.0](https://github.com/TooTallNate/spotify-uri/compare/v2.2.2...v3.0.0) (2022-04-07)
 
 
