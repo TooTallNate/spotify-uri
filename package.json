@@ -3,6 +3,8 @@
   "description": "Parse the various Spotify URI formats into Objects and back",
   "homepage": "https://github.com/TooTallNate/spotify-uri#readme",
   "version": "3.0.0",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
   "author": {
     "email": "nathan@tootallnate.net",
     "name": "Nathan Rajlich",
@@ -58,6 +60,7 @@
   "devDependencies": {
     "@types/node": "12",
     "mocha": "latest",
+    "standard-version": "latest",
     "ts-standard": "latest",
     "tsup": "latest",
     "typescript": "latest"
@@ -74,7 +77,7 @@
     "prepublishOnly": "npm run build",
     "prerelease": "npm run test",
     "pretest": "npm run build",
-    "release": "standard-version && git push --follow-tags origin next && npm publish && gh release create --generate-notes --help $(git describe --tags --abbrev=0)",
+    "release": "standard-version && git push --follow-tags origin next && npm publish && gh release create --generate-notes $(git describe --tags --abbrev=0)",
     "test": "mocha",
     "test-lint": "ts-standard"
   },
