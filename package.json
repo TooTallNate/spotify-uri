@@ -2,8 +2,7 @@
   "name": "spotify-uri",
   "description": "Parse the various Spotify URI formats into Objects and back",
   "homepage": "https://github.com/TooTallNate/spotify-uri#readme",
-  "version": "2.2.2",
-  "main": "./dist/index.js",
+  "version": "2.2.1",
   "author": {
     "email": "nathan@tootallnate.net",
     "name": "Nathan Rajlich",
@@ -11,8 +10,8 @@
   },
   "contributors": [
     {
-      "name": "Nathan Rajlich",
-      "email": "nathan@tootallnate.net"
+      "name": "Kiko Beats",
+      "email": "josefrancisco.verdu@gmail.com"
     },
     {
       "name": "Stefan Duberg",
@@ -23,16 +22,16 @@
       "email": "kall@kall.ws"
     },
     {
-      "name": "Kiko Beats",
-      "email": "josefrancisco.verdu@gmail.com"
+      "name": "Shem Magnezi",
+      "email": "smagnezi8@gmail.com"
+    },
+    {
+      "name": "Marwan Zibaoui",
+      "email": "marwan.zibaoui@gmail.com"
     },
     {
       "name": "Miraculous Owonubi",
       "email": "omiraculous@gmail.com"
-    },
-    {
-      "name": "Shem Magnezi",
-      "email": "smagnezi8@gmail.com"
     }
   ],
   "repository": {
@@ -43,42 +42,47 @@
     "url": "https://github.com/TooTallNate/spotify-uri/issues"
   },
   "keywords": [
-    "http",
-    "link",
-    "object",
+    "album",
+    "artist",
+    "embed",
+    "episode",
     "parse",
+    "playlist",
+    "search",
     "spotify",
+    "track",
     "uri",
-    "url"
+    "url",
+    "user"
   ],
   "devDependencies": {
-    "@types/node": "^12.12.11",
-    "@typescript-eslint/eslint-plugin": "1.6.0",
-    "@typescript-eslint/parser": "1.1.0",
-    "eslint": "5.16.0",
-    "eslint-config-airbnb": "17.1.0",
-    "eslint-config-prettier": "4.1.0",
-    "eslint-import-resolver-typescript": "1.1.1",
-    "eslint-plugin-import": "2.16.0",
-    "eslint-plugin-jsx-a11y": "6.2.1",
-    "eslint-plugin-react": "7.12.4",
-    "mocha": "^6.2.2",
-    "rimraf": "^3.0.0",
-    "typescript": "^3.5.3"
+    "@types/node": "12",
+    "mocha": "latest",
+    "ts-standard": "latest",
+    "tsup": "latest",
+    "typescript": "latest"
   },
   "engines": {
-    "node": ">= 6"
+    "node": ">= 12"
   },
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "tsc",
-    "prebuild": "rimraf dist",
+    "build": "tsup src/index.ts --format esm,cjs --dts",
+    "prebuild": "rm -rf dist",
     "prepublishOnly": "npm run build",
+    "prerelease": "npm run test",
+    "pretest": "npm run build",
+    "release": "standard-version && git push --follow-tags origin next && npm publish && gh release create --generate-notes --help $(git describe --tags --abbrev=0)",
     "test": "mocha",
-    "test-lint": "eslint src --ext .js,.ts"
+    "test-lint": "ts-standard"
   },
   "license": "MIT",
-  "typings": "./dist/index.d.ts"
+  "exports": {
+    "import": "./dist/index.mjs",
+    "require": "./dist/index.js",
+    "types": "./dist/index.d.ts"
+  },
+  "types": "./dist/index.d.ts"
 }
