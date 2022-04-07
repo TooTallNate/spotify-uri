@@ -6,6 +6,7 @@ import _Artist from './artist';
 import _Album from './album';
 import _Track from './track';
 import _User from './user';
+import _Episode from './episode';
 import _SpotifyUri from './spotify-uri';
 
 function parseSpotifyUri(uri: string | _SpotifyUri) {
@@ -36,6 +37,9 @@ namespace parseSpotifyUri {
 
 	export type User = _User;
 	export const User = _User;
+
+	export type Episode = _Episode;
+	export const Episode = _Episode;
 
 	export type ParsedSpotifyUri =
 		| Search
