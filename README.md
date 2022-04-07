@@ -1,66 +1,53 @@
-spotify-uri
-===========
-### Parse the various Spotify URI formats into Objects and back
-[![Build Status](https://github.com/TooTallNate/spotify-uri/workflows/Node%20CI/badge.svg)](https://github.com/TooTallNate/spotify-uri/actions?workflow=Node+CI)
+# spotify-uri
 
-Spotify URIs get passed around in a variety of flavors. This module parses them
+> Parse and format the various Spotify URL/URI formats.
+
+**spotify-uri** get passed around in a variety of flavors. This module parses them
 into a JavaScript object so you can work with them further. You can also convert
 them back into Spotify URIs or HTTP URLs.
 
+## Install
 
-Installation
-------------
-
-Install for node.js or browserify using `npm`:
-
-``` bash
+```bash
 $ npm install spotify-uri
 ```
 
+## Usage
 
-Example
--------
+Just call `parse` method:
 
-``` javascript
-var spotifyUri = require('spotify-uri');
-var parsed, uri;
+```js
+const { parse } = require('spotify-uri')
 
-// parse Spotify URIs or HTTP URLs into JavaScipt metadata Objects:
-
-parsed = spotifyUri.parse('spotify:track:3GU4cxkfdc3lIp9pFEMMmw');
-console.log(parsed);
-// { uri: 'spotify:track:3GU4cxkfdc3lIp9pFEMMmw',
+spotifyUri.parse('spotify:track:3GU4cxkfdc3lIp9pFEMMmw')
+// { 
+//   uri: 'spotify:track:3GU4cxkfdc3lIp9pFEMMmw',
 //   type: 'track',
-//   id: '3GU4cxkfdc3lIp9pFEMMmw' }
+//   id: '3GU4cxkfdc3lIp9pFEMMmw' 
+// }
 
-parsed = spotifyUri.parse('http://open.spotify.com/track/1pKYYY0dkg23sQQXi0Q5zN');
-console.log(parsed);
-// { uri: 'http://open.spotify.com/track/1pKYYY0dkg23sQQXi0Q5zN',
+spotifyUri.parse('http://open.spotify.com/track/1pKYYY0dkg23sQQXi0Q5zN')
+// { 
+//   uri: 'http://open.spotify.com/track/1pKYYY0dkg23sQQXi0Q5zN',
 //   type: 'track',
-//   id: '1pKYYY0dkg23sQQXi0Q5zN' }
+//   id: '1pKYYY0dkg23sQQXi0Q5zN' 
+// }
+```
 
+You can also format the parsed objects back into a URI or HTTP URL:
 
-// you can also format the parsed objects back into a URI or HTTP URL:
+```js
+const { parse, formatURI, formatOpenURL, formatPlayURL, formatEmbedURL } = require('spotify-uri')
 
-uri = spotifyUri.formatURI(parsed);
-console.log(uri);
-// 'spotify:track:1pKYYY0dkg23sQQXi0Q5zN'
+const parsed = parse('http://open.spotify.com/track/1pKYYY0dkg23sQQXi0Q5zN')
 
-uri = spotifyUri.formatOpenURL(parsed);
-console.log(uri);
-// 'http://open.spotify.com/track/1pKYYY0dkg23sQQXi0Q5zN'
-
-uri = spotifyUri.formatPlayURL(parsed);
-console.log(uri);
-// 'https://play.spotify.com/track/1pKYYY0dkg23sQQXi0Q5zN'
-
-uri = spotifyUri.formatEmbedURL(parsed);
-console.log(uri);
-// 'https://embed.spotify.com/?uri=spotify:track:1pKYYY0dkg23sQQXi0Q5zN'
+formatURI(parsed) // => 'spotify:track:1pKYYY0dkg23sQQXi0Q5zN'
+formatOpenURL(parsed) // => 'http://open.spotify.com/track/1pKYYY0dkg23sQQXi0Q5zN'
+formatPlayURL(parsed) // => 'https://play.spotify.com/track/1pKYYY0dkg23sQQXi0Q5zN'
+formatEmbedURL(parsed) // => 'https://embed.spotify.com/?uri=spotify:track:1pKYYY0dkg23sQQXi0Q5zN'
 ```
 
 See the [test cases](./test) for some more examples of Spotify URIs.
-
 
 ## API
 
@@ -75,10 +62,9 @@ passed in. The different "types" are listed below:
 Formats a parsed URI Object back into a Spotify URI. For example:
 
 ``` js
-var parsed = spotifyUri.parse('https://play.spotify.com/track/3GU4cxkfdc3lIp9pFEMMmw');
-var uri = spotifyUri.formatURI(parsed);
-console.log(uri);
-// 'spotify:track:3GU4cxkfdc3lIp9pFEMMmw'
+const { parse, formatURI } = require('spotify-uri')
+const parsed = spotifyUri.parse('https://play.spotify.com/track/3GU4cxkfdc3lIp9pFEMMmw')
+formatURI(parsed) // => 'spotify:track:3GU4cxkfdc3lIp9pFEMMmw'
 ```
 
 ### .formatOpenURL(Object parsedUri) → String
@@ -86,10 +72,9 @@ console.log(uri);
 Formats a parsed URI Object back into a Spotify HTTP "open" URL. For example:
 
 ``` js
-var parsed = spotifyUri.parse('spotify:track:3c1zC1Ma3987kQcHQfcG0Q');
-var uri = spotifyUri.formatOpenURL(parsed);
-console.log(uri);
-// 'http://open.spotify.com/track/3c1zC1Ma3987kQcHQfcG0Q'
+const { parse, formatOpenURL } = require('spotify-uri')
+const parsed = parse('spotify:track:3c1zC1Ma3987kQcHQfcG0Q')
+formatOpenURL(parsed) // => 'http://open.spotify.com/track/3c1zC1Ma3987kQcHQfcG0Q'
 ```
 
 ### .formatPlayURL(Object parsedUri) → String
@@ -97,10 +82,9 @@ console.log(uri);
 Formats a parsed URI Object back into a Spotify HTTPS "play" URL. For example:
 
 ``` js
-var parsed = spotifyUri.parse('spotify:track:4Jgp57InfWE4MxJLfheNVz');
-var uri = spotifyUri.formatPlayURL(parsed);
-console.log(uri);
-// 'https://play.spotify.com/track/4Jgp57InfWE4MxJLfheNVz'
+const { parse, formatPlayURL } = require('spotify-uri')
+const parsed = parse('spotify:track:4Jgp57InfWE4MxJLfheNVz')
+formatPlayURL(parsed) // => 'https://play.spotify.com/track/4Jgp57InfWE4MxJLfheNVz'
 ```
 
 ### .formatEmbedURL(Object parsedUri) → String
@@ -108,13 +92,12 @@ console.log(uri);
 Formats a parsed URI Object back into a Spotify HTTPS "embed" URL. For example:
 
 ``` js
-var parsed = spotifyUri.parse('spotify:track:6JmI8SpUHoQ4yveHLjTrko');
-var uri = spotifyUri.formatEmbedURL(parsed);
-console.log(uri);
-// 'https://embed.spotify.com/?uri=spotify:track:6JmI8SpUHoQ4yveHLjTrko'
+const { parse, formatEmbedURL } = require('spotify-uri')
+const parsed = parse('spotify:track:6JmI8SpUHoQ4yveHLjTrko')
+formatEmbedURL(parsed) // => 'https://embed.spotify.com/?uri=spotify:track:6JmI8SpUHoQ4yveHLjTrko'
 ```
-
 
 ## License
 
-MIT
+**spotify-uri** © [Nathan Rajlich](http://n8.io), released under the [MIT](https://github.com/microlinkhq/spotify-url-info/blob/master/LICENSE.md) License.<br>
+Authored by [Nathan Rajlich](http://n8.io) and maintained by [Kiko Beats](https://kikobeats.com) with help from [contributors](https://github.com/microlinkhq/spotify-url-info/contributors).

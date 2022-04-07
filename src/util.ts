@@ -4,8 +4,8 @@
  * @param {String} str
  * @api private
  */
-export function decode(str: string): string {
-	return decodeURIComponent(str).replace(/\+/g, ' ');
+export function decode (str: string): string {
+  return decodeURIComponent(str).replace(/\+/g, ' ')
 }
 
 /**
@@ -14,6 +14,6 @@ export function decode(str: string): string {
  * @param {String} str
  * @api private
  */
-export function encode(str: string): string {
-	return escape(str.replace(/ /g, '+'));
+export function encode (str: string): string {
+  return escape(str.replace(/ /g, '+'))
 }
