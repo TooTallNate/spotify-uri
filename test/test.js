@@ -95,6 +95,13 @@ describe('parse()', function () {
       assert.equal('track', obj.type)
       assert.equal('5oscsdDQ0NpjsTgpG4bI8S', obj.id)
     })
+    it('should parse "playlist" URLs', function () {
+      let url =
+        'https://embed.spotify.com/?uri=spotify:playlist:7arbVhvtYYaLYJefoRBSvU'
+      let obj = parse(url)
+      assert.equal('playlist', obj.type)
+      assert.equal('7arbVhvtYYaLYJefoRBSvU', obj.id)
+    })
   })
 
   describe('"open.spotify.com/embed" URLs (e.g. twitter embed)', function () {
@@ -103,6 +110,12 @@ describe('parse()', function () {
       let obj = parse(url)
       assert.equal('track', obj.type)
       assert.equal('5oscsdDQ0NpjsTgpG4bI8S', obj.id)
+    })
+    it('should parse "playlist" URLs', function () {
+      let url = 'https://open.spotify.com/embed/playlist/7arbVhvtYYaLYJefoRBSvU'
+      let obj = parse(url)
+      assert.equal('playlist', obj.type)
+      assert.equal('7arbVhvtYYaLYJefoRBSvU', obj.id)
     })
   })
 
