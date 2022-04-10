@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.2](https://github.com/TooTallNate/spotify-uri/compare/v3.0.1...v3.0.2) (2022-04-10)
+
+
+### Bug Fixes
+
+* export uri types ([7776c7b](https://github.com/TooTallNate/spotify-uri/commit/7776c7be9265e12e68ed8ce1ec1c7ee1ec073e33))
+* linter ([c80803c](https://github.com/TooTallNate/spotify-uri/commit/c80803ce0d44a558f5bc70192a0adcd867c38c55))
+
 ### [3.0.1](https://github.com/TooTallNate/spotify-uri/compare/v3.0.0...v3.0.1) (2022-04-07)
 
 
