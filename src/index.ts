@@ -20,7 +20,7 @@ export type ParsedSpotifyUri =
   | Album
   | User
 
-export { parse }
+export { parse, Search, Episode, Local, Playlist, Track, Artist, Album, User }
 
 export function formatURI (input: string | SpotifyUri): string {
   const uri: SpotifyUri = typeof input === 'string' ? parse(input) : input
