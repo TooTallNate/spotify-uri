@@ -17,3 +17,5 @@ export function decode (str: string): string {
 export function encode (str: string): string {
   return escape(str.replace(/ /g, '+'))
 }
+
+export const URL = global.URL || require('url').URL;

@@ -1,4 +1,3 @@
-import { URL } from 'url'
 import Local from './local'
 import Search from './search'
 import Playlist from './playlist'
@@ -9,7 +8,7 @@ import Episode from './episode'
 import Show from './show'
 import User from './user'
 import SpotifyUri from './spotify-uri'
-import { decode } from './util'
+import { decode, URL } from './util'
 import { ParsedSpotifyUri } from '.'
 
 /**
