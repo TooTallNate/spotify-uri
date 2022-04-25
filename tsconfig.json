@@ -4,10 +4,10 @@
     "module": "CommonJS",
     "target": "es2015",
     "esModuleInterop": true,
-    "lib": ["esnext"],
+    "lib": ["esnext", "dom"],
     "outDir": "dist",
     "sourceMap": true,
-    "declaration": true
+    "declaration": true,
   },
   "include": ["src/**/*", "test/**/*"],
   "exclude": ["node_modules"]

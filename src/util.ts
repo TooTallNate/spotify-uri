@@ -18,4 +18,4 @@ export function encode (str: string): string {
   return escape(str.replace(/ /g, '+'))
 }
 
-export const URL = global.URL || require('url').URL;
+export const URL = global?.URL || window?.URL || require('url').URL;
