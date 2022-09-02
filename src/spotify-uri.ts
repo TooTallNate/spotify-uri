@@ -16,7 +16,7 @@ export default abstract class SpotifyUri {
   }
 
   public toOpenURL (): string {
-    return `http://open.spotify.com${this.toURL()}`
+    return `https://open.spotify.com${this.toURL()}`
   }
 
   public toPlayURL (): string {
