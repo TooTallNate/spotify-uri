@@ -5,7 +5,7 @@
  * @api private
  */
 export function decode (str: string): string {
-  return decodeURIComponent(str).replace(/\+/g, ' ')
+  return decodeURIComponent(str.replace(/\+/g, ' '))
 }
 
 /**
@@ -15,5 +15,5 @@ export function decode (str: string): string {
  * @api private
  */
 export function encode (str: string): string {
-  return escape(str.replace(/ /g, '+'))
+  return encodeURIComponent(str).replace(/%20/g, "+").replace(/[!'()*]/g, escape)
 }
