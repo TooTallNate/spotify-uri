@@ -8,6 +8,7 @@ import Album from './album'
 import Track from './track'
 import User from './user'
 import Episode from './episode'
+import Show from './show';
 import SpotifyUri from './spotify-uri'
 
 export type ParsedSpotifyUri =
@@ -19,8 +20,9 @@ export type ParsedSpotifyUri =
   | Artist
   | Album
   | User
+  | Show
 
-export { parse, Search, Episode, Local, Playlist, Track, Artist, Album, User }
+export { parse, Search, Episode, Local, Playlist, Track, Artist, Album, User, Show }
 
 export function formatURI (input: string | SpotifyUri): string {
   const uri: SpotifyUri = typeof input === 'string' ? parse(input) : input
