@@ -11,11 +11,12 @@ import User from './user'
 import SpotifyUri from './spotify-uri'
 import { decode } from './util'
 import { ParsedSpotifyUri } from '.'
+import { SpotifyTypes } from './types-enum'
 
 /**
  * Parses a "Spotify URI".
  *
- * @param {String} uri
+ * @param {String} input
  * @return {Object} parsed Spotify uri object
  * @api public
  */
@@ -26,7 +27,7 @@ export default function parse (input: string | SpotifyUri): ParsedSpotifyUri {
   if (hostname === 'embed.spotify.com') {
     const parsedQs = Object.fromEntries(searchParams)
     if (typeof parsedQs.uri !== 'string') {
-      throw new Error('fo')
+      throw new Error('Parsed query string was not valid: ' + searchParams.toString())
     }
     return parse(parsedQs.uri)
   }
@@ -46,14 +47,16 @@ export default function parse (input: string | SpotifyUri): ParsedSpotifyUri {
 }
 
 function parseParts (uri: string, parts: string[]): ParsedSpotifyUri {
-  const len = parts.length
-  if (parts[1] === 'embed') {
+  let spotifyType = parts[1]
+  if (spotifyType === SpotifyTypes.Embed) {
     parts = parts.slice(1)
+    spotifyType = parts[1]
   }
-  if (parts[1] === 'search') {
+  const len = parts.length
+  if (spotifyType === SpotifyTypes.Search) {
     return new Search(uri, decode(parts.slice(2).join(':')))
   }
-  if (len >= 3 && parts[1] === 'local') {
+  if (len >= 3 && spotifyType === SpotifyTypes.Local) {
     return new Local(
       uri,
       decode(parts[2]),
@@ -62,35 +65,32 @@ function parseParts (uri: string, parts: string[]): ParsedSpotifyUri {
       +parts[5]
     )
   }
-  if (len === 3 && parts[1] === 'playlist') {
+  if (len >= 4 || spotifyType === SpotifyTypes.Playlist) {
+    if (len >= 5) {
+      return new Playlist(uri, decode(parts[4]), decode(parts[2]))
+    }
+    if (parts[3] === 'starred') {
+      return new Playlist(uri, 'starred', decode(parts[2]))
+    }
     return new Playlist(uri, decode(parts[2]))
   }
-  if (len === 3 && parts[1] === 'user') {
+  if (len === 3 && spotifyType === SpotifyTypes.User) {
     return new User(uri, decode(parts[2]))
   }
-  if (len >= 5) {
-    return new Playlist(uri, decode(parts[4]), decode(parts[2]))
-  }
-  if (len >= 4 && parts[3] === 'starred') {
-    return new Playlist(uri, 'starred', decode(parts[2]))
-  }
-  if (parts[1] === 'artist') {
+  if (spotifyType === SpotifyTypes.Artist) {
     return new Artist(uri, parts[2])
   }
-  if (parts[1] === 'album') {
+  if (spotifyType === SpotifyTypes.Album) {
     return new Album(uri, parts[2])
   }
-  if (parts[1] === 'track') {
+  if (spotifyType === SpotifyTypes.Track) {
     return new Track(uri, parts[2])
   }
-  if (parts[1] === 'episode') {
+  if (spotifyType === SpotifyTypes.Episode) {
     return new Episode(uri, parts[2])
   }
-  if (parts[1] === 'show') {
+  if (spotifyType === SpotifyTypes.Show) {
     return new Show(uri, parts[2])
-  }
-  if (parts[1] === 'playlist') {
-    return new Playlist(uri, parts[2])
   }
   throw new TypeError(`Could not determine type for: ${uri}`)
 }

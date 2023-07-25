@@ -1,14 +1,27 @@
-export default abstract class SpotifyUri {
-  public uri: string
-  public abstract toURL (): string
-  public abstract toURI (): string
+import { SpotifyTypes } from './types-enum';
+import { encode } from './util'
 
-  constructor (uri: string) {
-    this.uri = uri
+export default abstract class SpotifyUri {
+  public type: SpotifyTypes;
+  public id: string;
+  public uri: string;
+
+  constructor (uri: string, id : string) {
+    this.uri = uri;
+    this.id = id;
+    this.type = this.constructor.name.toLowerCase() as SpotifyTypes;
   }
 
   public static is (v: any): v is SpotifyUri {
-    return Boolean(typeof v === 'object' && typeof v.uri === 'string')
+    return typeof v === 'object' && typeof v.uri === 'string'
+  }
+
+  public toURI (): string {
+    return `spotify:${this.type}:${encode(this.id)}`
+  }
+
+  public toURL (): string {
+    return `/${this.type}/${encode(this.id)}`
   }
 
   public toEmbedURL (): string {

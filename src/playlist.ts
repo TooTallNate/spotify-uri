@@ -1,21 +1,17 @@
-import { encode } from './util'
 import SpotifyUri from './spotify-uri'
-
+import { encode } from './util'
 export default class Playlist extends SpotifyUri {
-  public type = 'playlist'
-  public id: string
   public user?: string
 
   constructor (uri: string, id: string, user?: string) {
-    super(uri)
-    this.id = id
+    super(uri, id)
     if (typeof user === 'string') {
       this.user = user
     }
   }
 
   public static is (v: any): v is Playlist {
-    return Boolean(typeof v === 'object' && v.type === 'playlist')
+    return typeof v === 'object' && v.type === 'playlist'
   }
 
   public toURI (): string {
