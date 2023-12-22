@@ -18,14 +18,32 @@ describe('parse()', function () {
       assert.strictEqual('track', obj.type)
       assert.strictEqual('10M2REwwztVxgr0szw7UwD', obj.id)
     })
+    it('should parse "track" URLs with localization', function () {
+      const url = 'https://open.spotify.com/intl-il/track/4uhnhRlZ1Jq5zN7VOxqHeW'
+      const obj = parse(url)
+      assert.strictEqual('track', obj.type)
+      assert.strictEqual('4uhnhRlZ1Jq5zN7VOxqHeW', obj.id)
+    })
     it('should parse "episode" URLs', function () {
       const url = 'http://open.spotify.com/episode/64TORH3xleuD1wcnFsrH1E'
       const obj = parse(url)
       assert.strictEqual('episode', obj.type)
       assert.strictEqual('64TORH3xleuD1wcnFsrH1E', obj.id)
     })
+    it('should parse "episode" URLs with localization', function () {
+      const url = 'http://open.spotify.com/intl-il/episode/64TORH3xleuD1wcnFsrH1E'
+      const obj = parse(url)
+      assert.strictEqual('episode', obj.type)
+      assert.strictEqual('64TORH3xleuD1wcnFsrH1E', obj.id)
+    })
     it('should parse "show" URLs', function () {
       const url = 'https://open.spotify.com/show/6uxKcBftLv1aOWoNL7UzTl'
+      const obj = parse(url)
+      assert.strictEqual('show', obj.type)
+      assert.strictEqual('6uxKcBftLv1aOWoNL7UzTl', obj.id)
+    })
+    it('should parse "show" URLs with localization', function () {
+      const url = 'https://open.spotify.com/intl-il/show/6uxKcBftLv1aOWoNL7UzTl'
       const obj = parse(url)
       assert.strictEqual('show', obj.type)
       assert.strictEqual('6uxKcBftLv1aOWoNL7UzTl', obj.id)
@@ -87,6 +105,12 @@ describe('parse()', function () {
       assert.strictEqual('track', obj.type)
       assert.strictEqual('5W3cjX2J3tjhG8zb6u0qHn', obj.id)
     })
+    it('should parse "track" URLs with localization', function () {
+      const url = 'https://play.spotify.com/intl-fr/track/4uhnhRlZ1Jq5zN7VOxqHeW'
+      const obj = parse(url)
+      assert.strictEqual('track', obj.type)
+      assert.strictEqual('4uhnhRlZ1Jq5zN7VOxqHeW', obj.id)
+    })
   })
 
   describe('"embed.spotify.com" URLs', function () {
@@ -113,9 +137,22 @@ describe('parse()', function () {
       assert.strictEqual('track', obj.type)
       assert.strictEqual('5oscsdDQ0NpjsTgpG4bI8S', obj.id)
     })
+    it('should parse "track" URLs with localization', function () {
+      const url = 'https://open.spotify.com/embed/intl-il/track/5oscsdDQ0NpjsTgpG4bI8S'
+      const obj = parse(url)
+      assert.strictEqual('track', obj.type)
+      assert.strictEqual('5oscsdDQ0NpjsTgpG4bI8S', obj.id)
+    })
     it('should parse "playlist" URLs', function () {
       const url =
         'https://open.spotify.com/embed/playlist/7arbVhvtYYaLYJefoRBSvU'
+      const obj = parse(url)
+      assert.strictEqual('playlist', obj.type)
+      assert.strictEqual('7arbVhvtYYaLYJefoRBSvU', obj.id)
+    })
+    it('should parse "playlist" URLs with localization', function () {
+      const url =
+        'https://open.spotify.com/intl-il/embed/playlist/7arbVhvtYYaLYJefoRBSvU'
       const obj = parse(url)
       assert.strictEqual('playlist', obj.type)
       assert.strictEqual('7arbVhvtYYaLYJefoRBSvU', obj.id)
