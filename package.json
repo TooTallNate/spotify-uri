@@ -3,7 +3,13 @@
   "description": "Parse the various Spotify URI formats into Objects and back",
   "homepage": "https://github.com/TooTallNate/spotify-uri#readme",
   "version": "4.0.1",
+  "types": "./dist/index.d.ts",
   "main": "./dist/index.js",
+  "exports": {
+    "import": "./dist/index.mjs",
+    "require": "./dist/index.js",
+    "types": "./dist/index.d.ts"
+  },
   "module": "./dist/index.mjs",
   "author": {
     "email": "nathan@tootallnate.net",
@@ -20,12 +26,24 @@
       "email": "stefanduberg@me.com"
     },
     {
-      "name": "Karl Sander",
-      "email": "kall@kall.ws"
+      "name": "PawsOfDestruction",
+      "email": "74069208+PawsOfDestruction@users.noreply.github.com"
     },
     {
-      "name": "Shem Magnezi",
-      "email": "smagnezi8@gmail.com"
+      "name": "Enzo Ferey",
+      "email": "hello@enzoferey.com"
+    },
+    {
+      "name": "Jacob Morrison",
+      "email": "jake.morrison24@gmail.com"
+    },
+    {
+      "name": "Lioness100",
+      "email": "jchickmm2@gmail.com"
+    },
+    {
+      "name": "Karl Sander",
+      "email": "kall@kall.ws"
     },
     {
       "name": "Marwan Zibaoui",
@@ -34,6 +52,10 @@
     {
       "name": "Miraculous Owonubi",
       "email": "omiraculous@gmail.com"
+    },
+    {
+      "name": "Shem Magnezi",
+      "email": "smagnezi8@gmail.com"
     }
   ],
   "repository": {
@@ -81,11 +103,5 @@
     "test": "mocha",
     "test-lint": "ts-standard"
   },
-  "license": "MIT",
-  "exports": {
-    "import": "./dist/index.mjs",
-    "require": "./dist/index.js",
-    "types": "./dist/index.d.ts"
-  },
-  "types": "./dist/index.d.ts"
+  "license": "MIT"
 }
