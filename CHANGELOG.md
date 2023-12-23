@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.0.1](https://github.com/TooTallNate/spotify-uri/compare/v3.0.4...v4.0.1) (2023-12-23)
+
 ### [3.0.4](https://github.com/TooTallNate/spotify-uri/compare/v3.0.3...v3.0.4) (2023-05-15)
 
 ### [3.0.3](https://github.com/TooTallNate/spotify-uri/compare/v3.0.2...v3.0.3) (2022-09-02)
