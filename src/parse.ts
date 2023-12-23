@@ -47,6 +47,8 @@ export default function parse (input: string | SpotifyUri): ParsedSpotifyUri {
 }
 
 function parseParts (uri: string, parts: string[]): ParsedSpotifyUri {
+  parts = parts.filter(p => !p.startsWith('intl'))
+
   let spotifyType = parts[1]
   if (spotifyType === SpotifyTypes.Embed) {
     parts = parts.slice(1)
