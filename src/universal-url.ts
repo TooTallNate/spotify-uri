@@ -1,5 +1,7 @@
 let URLClass: typeof URL;
 
+declare var window: any;
+
 if (typeof window !== "undefined" && typeof window.URL !== "undefined") {
   // for browser environment
   URLClass = window.URL;
