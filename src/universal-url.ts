@@ -4,10 +4,10 @@ declare var window: any;
 
 if (typeof window !== "undefined" && typeof window.URL !== "undefined") {
   // for browser environment
-  URLClass = window.URL;
+  URLClass = URL;
 } else if (typeof global !== "undefined" && typeof global.URL !== "undefined") {
   // for react native environment
-  URLClass = global.URL;
+  URLClass = URL;
 } else if (typeof require !== "undefined") {
   // for Node.js environment
   const { URL } = require("url");
