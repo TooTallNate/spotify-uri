@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.1.0](https://github.com/TooTallNate/spotify-uri/compare/v4.0.1...v4.1.0) (2024-05-23)
+
+
+### Features
+
+* support browser environment ([#37](https://github.com/TooTallNate/spotify-uri/issues/37)) ([690669b](https://github.com/TooTallNate/spotify-uri/commit/690669b2365231be621c31dcecabfbf96e217df4))
+
 ### [4.0.1](https://github.com/TooTallNate/spotify-uri/compare/v3.0.4...v4.0.1) (2023-12-23)
 
 ### [3.0.4](https://github.com/TooTallNate/spotify-uri/compare/v3.0.3...v3.0.4) (2023-05-15)

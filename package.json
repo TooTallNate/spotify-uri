@@ -2,7 +2,7 @@
   "name": "spotify-uri",
   "description": "Parse the various Spotify URI formats into Objects and back",
   "homepage": "https://github.com/TooTallNate/spotify-uri#readme",
-  "version": "4.0.1",
+  "version": "4.1.0",
   "types": "./dist/index.d.ts",
   "main": "./dist/index.js",
   "exports": {
