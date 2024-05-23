@@ -25,7 +25,9 @@ export default function parse (input: string | SpotifyUri): ParsedSpotifyUri {
   if (hostname === 'embed.spotify.com') {
     const parsedQs = Object.fromEntries(searchParams)
     if (typeof parsedQs.uri !== 'string') {
-      throw new Error('Parsed query string was not valid: ' + searchParams.toString())
+      throw new Error(
+        'Parsed query string was not valid: ' + searchParams.toString()
+      )
     }
     return parse(parsedQs.uri)
   }

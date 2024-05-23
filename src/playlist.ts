@@ -1,6 +1,7 @@
 import SpotifyUri from './spotify-uri'
 import { SpotifyTypes } from './types-enum'
 import { encode } from './util'
+
 export default class Playlist extends SpotifyUri {
   public user?: string
 
