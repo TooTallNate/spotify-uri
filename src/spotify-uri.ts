@@ -1,15 +1,15 @@
-import { SpotifyTypes } from './types-enum';
+import { SpotifyTypes } from './types-enum'
 import { encode } from './util'
 
 export default abstract class SpotifyUri {
-  public type: SpotifyTypes;
-  public id: string;
-  public uri: string;
+  public type: SpotifyTypes
+  public id: string
+  public uri: string
 
-  constructor (uri: string, id : string) {
-    this.uri = uri;
-    this.id = id;
-    this.type = this.constructor.name.toLowerCase() as SpotifyTypes;
+  constructor (uri: string, id: string, type: SpotifyTypes) {
+    this.uri = uri
+    this.id = id
+    this.type = type
   }
 
   public static is (v: any): v is SpotifyUri {

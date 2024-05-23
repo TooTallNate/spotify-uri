@@ -1,4 +1,3 @@
-import { URL } from 'url'
 import Local from './local'
 import Search from './search'
 import Playlist from './playlist'
@@ -12,7 +11,6 @@ import SpotifyUri from './spotify-uri'
 import { decode } from './util'
 import { ParsedSpotifyUri } from '.'
 import { SpotifyTypes } from './types-enum'
-
 /**
  * Parses a "Spotify URI".
  *
@@ -27,7 +25,9 @@ export default function parse (input: string | SpotifyUri): ParsedSpotifyUri {
   if (hostname === 'embed.spotify.com') {
     const parsedQs = Object.fromEntries(searchParams)
     if (typeof parsedQs.uri !== 'string') {
-      throw new Error('Parsed query string was not valid: ' + searchParams.toString())
+      throw new Error(
+        'Parsed query string was not valid: ' + searchParams.toString()
+      )
     }
     return parse(parsedQs.uri)
   }
@@ -56,7 +56,7 @@ function parseParts (uri: string, parts: string[]): ParsedSpotifyUri {
   }
   const len = parts.length
   if (spotifyType === SpotifyTypes.Search) {
-    return new Search(uri, decode(parts.slice(2).join(':')))
+    return new Search(uri, decode(parts.slice(2).join(':')), spotifyType)
   }
   if (len >= 3 && spotifyType === SpotifyTypes.Local) {
     return new Local(
@@ -77,22 +77,22 @@ function parseParts (uri: string, parts: string[]): ParsedSpotifyUri {
     return new Playlist(uri, decode(parts[2]))
   }
   if (len === 3 && spotifyType === SpotifyTypes.User) {
-    return new User(uri, decode(parts[2]))
+    return new User(uri, decode(parts[2]), spotifyType)
   }
   if (spotifyType === SpotifyTypes.Artist) {
-    return new Artist(uri, parts[2])
+    return new Artist(uri, parts[2], spotifyType)
   }
   if (spotifyType === SpotifyTypes.Album) {
-    return new Album(uri, parts[2])
+    return new Album(uri, parts[2], spotifyType)
   }
   if (spotifyType === SpotifyTypes.Track) {
-    return new Track(uri, parts[2])
+    return new Track(uri, parts[2], spotifyType)
   }
   if (spotifyType === SpotifyTypes.Episode) {
-    return new Episode(uri, parts[2])
+    return new Episode(uri, parts[2], spotifyType)
   }
   if (spotifyType === SpotifyTypes.Show) {
-    return new Show(uri, parts[2])
+    return new Show(uri, parts[2], spotifyType)
   }
   throw new TypeError(`Could not determine type for: ${uri}`)
 }

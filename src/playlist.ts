@@ -1,10 +1,12 @@
 import SpotifyUri from './spotify-uri'
+import { SpotifyTypes } from './types-enum'
 import { encode } from './util'
+
 export default class Playlist extends SpotifyUri {
   public user?: string
 
   constructor (uri: string, id: string, user?: string) {
-    super(uri, id)
+    super(uri, id, SpotifyTypes.Playlist)
     if (typeof user === 'string') {
       this.user = user
     }

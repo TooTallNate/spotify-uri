@@ -1,5 +1,7 @@
 import SpotifyUri from './spotify-uri'
+import { SpotifyTypes } from './types-enum'
 import { encode } from './util'
+
 export default class Local extends SpotifyUri {
   public artist: string
   public album: string
@@ -13,7 +15,7 @@ export default class Local extends SpotifyUri {
     track: string,
     seconds: number
   ) {
-    super(uri, "")
+    super(uri, '', SpotifyTypes.Local)
     this.artist = artist
     this.album = album
     this.track = track
@@ -25,10 +27,14 @@ export default class Local extends SpotifyUri {
   }
 
   public toURI (): string {
-    return `spotify:${this.type}:${encode(this.artist)}:${encode(this.album)}:${encode(this.track)}:${this.seconds}`
+    return `spotify:${this.type}:${encode(this.artist)}:${encode(
+      this.album
+    )}:${encode(this.track)}:${this.seconds}`
   }
 
   public toURL (): string {
-    return `/${this.type}/${encode(this.artist)}/${encode(this.album)}/${encode(this.track)}/${this.seconds}`
+    return `/${this.type}/${encode(this.artist)}/${encode(this.album)}/${encode(
+      this.track
+    )}/${this.seconds}`
   }
 }
