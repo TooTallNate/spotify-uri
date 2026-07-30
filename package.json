@@ -1,6 +1,6 @@
 {
   "name": "spotify-uri",
-  "description": "Parse the various Spotify URI formats into Objects and back",
+  "description": "Parse Spotify URI and URL formats into structured objects and serialize them back again.",
   "homepage": "https://github.com/TooTallNate/spotify-uri#readme",
   "version": "4.1.0",
   "types": "./dist/index.d.ts",
@@ -72,12 +72,10 @@
     "episode",
     "parse",
     "playlist",
-    "search",
     "spotify",
     "track",
     "uri",
-    "url",
-    "user"
+    "url"
   ],
   "devDependencies": {
     "@types/node": "16",
